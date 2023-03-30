@@ -1,0 +1,34 @@
+.input-group-addon {
+    border: solid 1px #bbb;
+    padding: 0.6rem 1.5rem;
+}
+
+.input-group-addon input {
+    margin-left: 1rem;
+    border: none;
+    outline: none;
+}
+
+.register-footer-text {
+    margin-top: 1.5rem;
+    display: block;
+}
+
+.register-footer-text p {
+    padding: 0.7rem;
+}
+
+.register-remember-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.loginbtn {
+    width: 4rem;
+    height: 2.5rem;
+    background-color: #428bca;
+    border-color: rgb(255, 255, 255);
+    color: white;
+}

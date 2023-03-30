@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+<div th:replace="/fragments/nav"></div>
+
+
+
+<div class="breadcrumbs"></div>
+
+
+<div class="container body-nav">
+  <div class="container-body-nav">
+    <ul class="body-nav-ul">
+      <li class="body-nav-li" style="background-color: #428bca; color: white;">유저</li>
+      <li class="body-nav-li">일</li>
+      <li class="body-nav-li">주</li>
+      <li class="body-nav-li">달</li>
+      <li class="body-nav-li">년</li>
+
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="body-qeustion-table">
+    <table class="table table-border">
+      <thead>
+      <tr>
+        <th style="width: 10%;">등수</th>
+        <th style="width: 20%;">아이디</th>
+        <th style="width: 40%;">상태 메시지</th>
+        <th style="width: 10%;">맞힌 문제</th>
+        <th style="width: 20%;">포인트</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>1</td>
+      <td>wkdgus1136</td>
+      <td>안녕하세요</td>
+      <td>3</td>
+      <td>300</td>
+      </tr>
+      </tbody>
+
+
+    </table>
+
+  </div>
+
+</div>
+
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+
+</body>
+
+</html>

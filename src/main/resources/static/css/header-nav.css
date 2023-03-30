@@ -1,0 +1,151 @@
+.header {
+    border-bottom: solid 2px var(--border-color);
+    position: relative;
+}
+
+.topbar {
+    margin-top: 1rem;
+
+}
+
+.container-menu,
+.topbar .container {
+    display: flex;
+    justify-content: end;
+}
+
+
+
+.container {
+    width: var(--container-size);
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
+.MAIN_LOGO {
+    position: absolute;
+    left: 0;
+    top: -15px;
+    height: 60px;
+
+}
+
+.container-menu {
+    position: relative;
+    overflow: visible;
+    padding-top: 0.8rem;
+}
+
+.dropMenu-mega-content,
+.container-menubar,
+.login-bar-right {
+    display: flex;
+}
+
+.login-bar-right li a {
+    color: var(--font-color-gray-01);
+
+}
+
+.login-bar-right li a:hover {
+    color: var(--font-color-gray-01);
+    text-decoration: underline;
+
+}
+
+
+
+.login-bar-right li {
+    margin-left: 1rem;
+
+}
+
+
+.container-menubar li {
+    padding: 0.8rem 2rem;
+    color: var(--font-color-gray-01);
+}
+
+
+
+.login-bar-right li {
+    font-size: 0.7rem;
+
+}
+
+.container-menubar li {
+    font-size: 0.9rem;
+}
+
+.container-menubar li a:hover:first-child {
+    color: var(--font-color-blue);
+}
+
+.deviger {
+    border-right: solid 1px #bbb;
+}
+
+.dropDownMenu {
+    width: 100%;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border-top: solid 2px var(--font-color-blue);
+    border-bottom: solid 2px var(--font-color-gray-01);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+
+
+}
+
+.container-menu-qestion:hover .dropDownMenu {
+    display: block;
+
+}
+
+
+.dropMenu-container {
+    padding: 1.5rem 0;
+    font-size: 0.8rem;
+
+}
+
+.dropMenu-container ul li::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    font-size: 10px;
+    margin-right: 1rem;
+    content: "\f054";
+}
+
+.dropMenu-container ul li {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: var(--font-color-gray-01);
+    transition: all ease 0.15s;
+}
+
+.dropMenu-container ul li:hover {
+    background-color: #687074;
+    color: white;
+    transition: all ease 0.15s;
+
+}
+
+.dropMenu-deviger {
+    width: 25%;
+    border-right: 1px solid #ececec;
+}
+
+.dropMenu-subject {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+}
+
+

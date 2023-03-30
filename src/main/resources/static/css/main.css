@@ -1,0 +1,213 @@
+@import url(header-nav.css);
+@import url(root.css);
+@import url(register.css);
+@import url(footer.css);
+@import url(login.css);
+@import url(index.css);
+@import url(question.css);
+@import url(notification.css);
+@import url(search.css);
+@import url(modal-hint.css);
+
+
+@import url(problem/problem-submit.css);
+@import url(problem/problem-bodynav.css);
+@import url(problem/problem-option.css);
+@import url(problem/problem-Info.css);
+
+
+html, body, div, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    box-sizing: border-box;
+
+}
+
+html {
+    position: relative;
+}
+
+div {
+    display: block;
+}
+
+button {
+    border: none;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans CJK KR', 'Noto Sans KR', '나눔바른고딕',
+    '나눔고딕', '맑은고딕', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
+    overflow: overlay;
+}
+ol, ul {
+    list-style: none;
+    color: var(--font-color-gray-01);
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.fa-chevron-down {
+    font-size: 10px;
+}
+
+.opacity {
+    opacity: 0;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+    background-color: #fcfcfc;
+    box-shadow: 0 0 3px #eee;
+}
+
+.content {
+    padding: 2rem 1rem;
+
+}
+
+p {
+    color: var(--font-color-gray-01);
+    font-size: 0.8rem;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.margin-top-1 {
+    margin-top: 1rem;
+}
+
+.margin-right-1 {
+    margin-right: 1rem;
+}
+
+.border-right {
+    border-right: 1px solid var(--border-color-C4);
+}
+
+.fa-chevron-down {
+    color: #b3b3b3;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+textarea {
+    border: none;
+}
+
+li {
+    list-style: none;
+}
+
+a { text-decoration: none; color: var(--font-color-gray-01); }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
+body::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
+
+
+body::-webkit-scrollbar-thumb {
+    height: 20%; /* 스크롤바의 길이 */
+    background: #a9adb38c; /* 스크롤바의 색상 */
+
+    border-radius: 15px;
+}
+
+
+body::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);  /*스크롤바 뒷 배경 색상*/
+    width: 8px;
+}
+
+.fade-in {
+    opacity: 0;
+
+}
+
+table td,
+table th {
+    border-right: 1px solid var(--border-color-C4);
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-none {
+    background: none;
+    cursor: pointer;
+    color: blue;
+}
+
+.active {
+    display: block;
+}
+
+.border {
+    border: 1px solid var(--border-color);
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

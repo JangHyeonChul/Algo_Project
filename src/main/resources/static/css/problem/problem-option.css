@@ -1,0 +1,79 @@
+
+.body-option {
+
+    color: var(--font-color-gray-01);
+    overflow: hidden;
+    border: 1px solid #eee;
+
+}
+
+.option-etc-section,
+.option-btn-fieldset,
+.option-tier-fieldset,
+.option-sort-fieldset,
+.option-sort-section {
+    padding: 1.5rem;
+    width: 50%;
+
+}
+.option-etc-section,
+.option-sort-section {
+    border-right: 1px solid var(--border-color);
+}
+
+.option-etc-container,
+.option-sort-container {
+    display: flex;
+}
+
+
+.radio {
+    line-height: 2rem;
+    margin-right: 2rem;
+}
+
+
+.sort-ti-radio-container,
+.sort-ar-radio-container,
+.sort-no-radio-container {
+    overflow-wrap: break-word;
+}
+
+
+.option-etc-container,
+.option-btn-section,
+.option-tier-section,
+.option-algo-section {
+    border-top: 1px solid var(--border-color);
+}
+
+.option-reset,
+.option-apply {
+    padding: 0.4rem 0.8rem;
+    color: white;
+
+    margin-right: 0.6rem;
+}
+
+.option-reset {
+    background: #e74c3c;
+}
+
+.option-apply {
+    background: #0076C0;
+}
+
+.body-nav-ul li {
+    background-color: white;
+    transition: all ease 0.25s;
+}
+
+.body-nav-ul li:hover {
+    background-color: var(--font-color-gray-09);
+    transition: all ease 0.25s;
+}
+
+.optionActive {
+    display: none;
+}
+

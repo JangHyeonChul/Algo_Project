@@ -1,0 +1,83 @@
+.breadcrumbs {
+    padding: 1.5rem 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #666;
+    border-bottom: solid 2px var(--border-color);
+    background-color: #fcfcfc;
+    width: 100%;
+}
+
+.register {
+    padding: 2rem 1rem;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.register-card-text {
+    text-align: center;
+    border-bottom: solid 2px var(--border-color);
+}
+
+.register-card-text p {
+    margin: 2rem 0;
+}
+
+.register-submit {
+    padding: 2rem 0;
+    border-bottom: solid 2px var(--border-color);
+}
+
+.row-1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    margin: 1rem 0;
+}
+
+
+.row-1 label {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.row-1 input {
+    padding: 0.4rem 0.7rem;
+    border: solid 2px var(--border-color);
+    border-radius: 2rem;
+    transition: all ease 0.15s;
+}
+
+.row-1 input:focus {
+    border-color: rgb(204, 204, 204);
+    transition: all ease 0.3s;
+}
+
+
+.row-sm-1 {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.row-check {
+    width: 48%;
+}
+
+.register-btn {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+
+.register-btn button {
+    border-radius: 1rem;
+    background-color: #428bca;
+    border-color: rgb(255, 255, 255);
+    color: white;
+    padding: 0.3rem 3rem;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+<div th:replace="/fragments/nav"></div>
+<div class="breadcrumbs"></div>
+
+<div class="container body-nav">
+  <div class="container-body-nav">
+    <ul class="body-nav-ul">
+      <li class="body-nav-li">문제</li>
+      <li class="body-nav-li">목록</li>
+      <li class="body-nav-li" style="background-color: #428bca; color: white;">제출내역</li>
+      <li style="color: red;" class="body-nav-li">도전하기</li>
+
+    </ul>
+
+  </div>
+
+</div>
+
+<div class="container board-content-body">
+
+
+  <table style="border: 1px solid var(--border-color-C4);" class="table board-content-table">
+    <thead class="board-content-thead">
+    <tr>
+      <th style="width: 20%;" class="border-right">번호</th>
+      <th style="width: 20%; border-right: 1px solid var(--border-color-C4);">정보</th>
+      <th style="width: 20%; border-right: 1px solid var(--border-color-C4);">크기</th>
+      <th style="width: 20%; border-right: 1px solid var(--border-color-C4);">제출일자</th>
+      <th style="width: 20%; border-right: 1px solid var(--border-color-C4);">언어</th>
+    </tr>
+    </thead>
+    <tbody class="board-content-tbody">
+      <tr>
+        <td style="border-right: 1px solid var(--border-color-C4);">1000</td>
+        <td style="border-right: 1px solid var(--border-color-C4);">성공</td>
+        <td style="border-right: 1px solid var(--border-color-C4);">100ms</td>
+        <td style="border-right: 1px solid var(--border-color-C4);">2016-3-16</td>
+        <td style="border-right: 1px solid var(--border-color-C4);">JAVA</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

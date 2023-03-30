@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+
+<div class="breadcrumbs"></div>
+<div class="container body-nav">
+  <div class="container-body-nav">
+    <ul class="body-nav-ul">
+      <li class="body-nav-li">문제</li>
+      <li class="body-nav-li">목록</li>
+      <li class="body-nav-li">제출내역</li>
+      <li style="background-color: #428bca; color: white;" class="body-nav-li">도전하기</li>
+
+    </ul>
+
+  </div>
+
+</div>
+
+
+<div class="container submit-container">
+  <form>
+    <div class="submit-header">
+      <div class="submit-lang">
+        언어
+      </div>
+
+      <select>
+        <option>JAVA</option>
+        <option>C</option>
+        <option>PYTHON</option>
+      </select>
+    </div>
+
+    <div class="submit-header">
+      <div class="submit-lang">
+        소스템플릿
+      </div>
+
+      <div class="submit-langtemp">
+        <div><a>JAVA</a></div>
+        <div><a>C</a></div>
+        <div><a>PYTHON</a></div>
+      </div>
+    </div>
+
+
+
+    <div class="submit-header">
+      <div class="submit-lang">
+        소스코드
+      </div>
+
+      <div class="submit-mirror-container">
+        <div class="submit-mirror"></div>
+        <textarea class="submit-textarea" style="resize: none;"></textarea>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+<div class="container board-content-body">
+
+  <div class="board-content-text">
+    <div class="headline"><h1>상세설명</h1></div>
+    <p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.<br>
+      정수형 변수 A와 B가 주어지며, 각각 변수의 리터럴값을 받아 A+B를 출력한다
+    </p>
+
+  </div>
+
+  <div class="board-content-text">
+    <div class="headline"><h1>입력값</h1></div>
+    <p>정수형 변수 A와 B가 주어진다</p>
+  </div>
+
+  <div class="board-content-text">
+    <div class="headline"><h1>출력값</h1></div>
+    <p>A+B의 값을 출력한다</p>
+  </div>
+
+  <div class="board-content-example">
+    <div class="board-content-text">
+      <div class="headline" style="width: 90%;">
+        <h1>예제 입력</h1>
+        <button onclick="copyToClipboard()" class="btn-none">복사</button>
+      </div>
+
+      <div style="width: 90%;" class="board-content-example-input" id="copy-text">
+        1 2
+      </div>
+    </div>
+
+    <div class="board-content-text">
+      <div class="headline" style="width: 90%;"><h1>예제 출력</h1></div>
+      <div style="width: 90%;" class="board-content-example-result">
+        3
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

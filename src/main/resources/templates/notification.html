@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+
+<div class="breadcrumbs"></div>
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="body-qeustion-table">
+    <table class="table table-border">
+      <thead>
+      <tr>
+        <th style="width: 10%;">글번호</th>
+        <th style="width: 40%;">제목</th>
+        <th style="width: 5%;">댓글</th>
+        <th style="width: 20%;">추천수</th>
+        <th style="width: 10%;">작성일</th>
+        <th style="width: 15%;">작성자</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>1</td>
+      <td>긴급공지입니다</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1일전</td>
+      <td>wkdgus1136</td>
+      </tr>
+      </tbody>
+
+      <tbody>
+      <tr>
+      <td>2</td>
+      <td>긴급공지아라라라라랄입니다</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1일전</td>
+      <td>wkdgus1136</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <h1 class="notifi_title">최신공지사항</h1>
+  <div class="board_container">
+    <div class="board_notifi_title">
+      긴급공지입니다
+    </div>
+    <div class="board_notifi_content">
+      안녕하세요.
+      <br>
+      <br>
+      <br>
+      node.js 제출이 /dev/stdin을 사용할 경우 런타임 에러가 발생하는 문제가 있습니다.
+      <br>
+      <br>
+      <br>
+      readline을 사용하는 것을 권장하며, /dev/stdin의 런타임 에러와 관련된 문제가 해결되면 다시 글이나 댓글 올리겠습니다.
+    </div>
+    <div class="board_notifi_push">
+      <div class="notifi_push_container">
+        <i style="font-size: 1.5rem;" class="fas fa-thumbs-up"></i>
+      </div>
+    </div>
+
+    <div class="board_notifi_userInfo">
+      <p class="margin-right-1">작성자 : wkdgus1136</p>
+      <p class="margin-right-1">추천수 : 1</p>
+      <p class="margin-right-1">작성일 : 1일전</p>
+    </div>
+
+
+  </div>
+  <div class="board_notifi_comment">
+    <div class="board_notifi_title">
+      작성자 : wkdgus1136
+    </div>
+    <div class="board_notifi_content">
+      안녕하세요.
+      <br>
+      <br>
+      집에가보겠습니다
+    </div>
+  </div>
+
+</div>
+
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+
+</body>
+
+</html>

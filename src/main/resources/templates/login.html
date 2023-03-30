@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs">
+  <div class="container">로그인</div>
+</div>
+
+<div class="container content">
+  <div class="row">
+    <div class="register card">
+      <form>
+        <div class="register-card-text">
+          <h2 style="font-size: 1.5rem;">로그인</h2><br>
+        </div>
+
+        <div class="register-submit">
+
+          <div class="input-group">
+            <div class="input-group-addon margin-bottom-20"><i class="fas fa-user-alt"><input type="text" placeholder="아이디 / 이메일"/></i></div>
+            <div class="input-group-addon margin-bottom-20"><i class="fas fa-lock"><input type="text" placeholder="비밀번호" /></i></div>
+          </div>
+
+          <div class="register-remember-login">
+            <div class="remember" style="color: var(--font-color-gray-01);"><input type="checkbox" style="margin-right: 0.5rem;"/>로그인 상태 유지</div>
+            <button class="loginbtn">로그인</button>
+
+          </div>
+
+
+
+
+        </div>
+        <div class="register-footer-text">
+          <p>아이디나 비밀번호를 잊었을 때는, <a href="#">여기</a>를 눌러주세요.</p>
+          <p>회원 가입은 <a href="#">여기</a>에서 할 수 있습니다.</p></div>
+      </form>
+    </div>
+
+
+  </div>
+
+</div>
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

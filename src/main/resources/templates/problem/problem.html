@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+<div th:replace="/fragments/nav"></div>
+<div class="breadcrumbs"></div>
+
+<div class="container body-nav">
+  <div class="container-body-nav">
+    <ul class="body-nav-ul">
+      <li class="body-nav-li" style="background-color: #428bca; color: white;">전체</li>
+      <li class="body-nav-li">랜덤</li>
+      <li class="body-nav-li">분류</li>
+      <li class="body-nav-li">최신 문제</li>
+
+    </ul>
+    <a style="cursor: pointer;" class="option-btn">옵션 <i class="fas fa-chevron-down"></i></a>
+  </div>
+
+  <div class="body-nav-search">
+    <form class="body-search-form">
+      <input style="margin-right: 0.4rem;" type="text" />
+      <button><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+
+</div>
+
+<div class="body-option container optionActive">
+
+  <form>
+    <div class="option-sort-container">
+
+      <section class="option-sort-section">
+        <div class="sort-no-title margin-bottom-20">
+          <label>문제 정렬</label>
+        </div>
+
+        <div class="sort-no-radio-container">
+          <label class="radio">
+            <input type="radio" name="sort-no" checked/>
+            문제번호
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-no"/>
+            랜덤문제
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-no"/>
+            문제순위
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-no"/>
+            맞은사람
+          </label>
+          <br>
+          <label class="radio">
+            <input type="radio" name="sort-no"/>
+            내가안푼문제
+          </label>
+        </div>
+
+      </section>
+
+      <fieldset class="option-sort-fieldset">
+        <div class="sort-ar-title margin-bottom-20">
+          <label>문제 순서</label>
+        </div>
+
+        <div class="sort-ar-radio-container">
+          <label class="radio">
+            <input type="radio" name="sort-ar" checked/>
+            오름차순
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-ar"/>
+            내림차순
+          </label>
+
+        </div>
+
+      </fieldset>
+    </div>
+
+    <div class="option-algo-section">
+      <fieldset class="option-sort-fieldset">
+        <div class="sort-ar-title margin-bottom-20">
+          <label>알고리즘 분류</label>
+        </div>
+
+        <div class="sort-ar-radio-container">
+          <label class="radio">
+            <input type="radio" name="sort-al" checked/>
+            사용 안함
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-al"/>
+            정렬
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-al"/>
+            자료 구조
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-al"/>
+            문자열
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="sort-al"/>
+            탐색
+          </label>
+
+        </div>
+
+      </fieldset>
+
+      <div class="option-tier-section">
+        <fieldset class="option-tier-fieldset">
+          <div class="sort-ar-title margin-bottom-20">
+            <label>난이도 분류</label>
+          </div>
+
+          <div class="sort-ti-radio-container">
+            <label class="radio">
+              <input type="radio" name="sort-ti" checked/>
+              전체
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="sort-ti"/>
+              하
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="sort-ti"/>
+              중
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="sort-ti"/>
+              상
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="sort-ti"/>
+              최상
+            </label>
+
+          </div>
+        </fieldset>
+      </div>
+
+
+      <div class="option-etc-container">
+
+        <section class="option-etc-section">
+          <div class="sort-no-title margin-bottom-20">
+            <label>언어</label>
+          </div>
+
+          <div class="sort-no-radio-container">
+            <label class="radio">
+              <input type="radio" name="sort-lang" checked/>
+              한국어
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="sort-lang"/>
+              영어
+            </label>
+          </div>
+        </section>
+
+
+        <fieldset class="option-sort-fieldset">
+          <div class="sort-ar-title margin-bottom-20">
+            <label>기타</label>
+          </div>
+
+          <div class="sort-ar-radio-container">
+            <label class="radio">
+              <input type="radio" name="sort-etc" checked/>
+              사용 안함
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="sort-etc"/>
+              아무도 못푼 문제
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="sort-etc"/>
+              한명만 푼 문제
+            </label>
+
+          </div>
+
+        </fieldset>
+      </div>
+
+
+      <div class="option-btn-section">
+        <fieldset class="option-btn-fieldset">
+          <button class="option-apply">적용</button>
+          <button class="option-reset">초기화</button>
+        </fieldset>
+
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="body-qeustion-table">
+    <table class="table table-border">
+      <thead>
+      <tr>
+        <th style="width: 10%;">문제</th>
+        <th style="width: 40%;">문제 제목</th>
+        <th style="width: 10%;">난이도</th>
+        <th style="width: 10%;">맞힌 인원</th>
+        <th style="width: 20%;">종류</th>
+        <th style="width: 10%;">정보</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1000</td>
+          <td>A+B</td>
+          <td>하</td>
+          <td>3</td>
+          <td>문자열</td>
+          <td>KR</td>
+        </tr>
+      </tbody>
+
+      <tbody>
+        <tr>
+          <td>1000</td>
+          <td>A+B</td>
+          <td>하</td>
+          <td>3</td>
+        <td>문자열</td>
+          <td>KR</td>
+       </tr>
+      </tbody>
+
+      <tbody>
+        <tr>
+          <td>1000</td>
+          <td>A+B</td>
+          <td>하</td>
+          <td>3</td>
+          <td>문자열</td>
+          <td>KR</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>1000</td>
+          <td>A+B</td>
+          <td>하</td>
+          <td>3</td>
+          <td>문자열</td>
+          <td>성공</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+
+</body>
+
+</html>

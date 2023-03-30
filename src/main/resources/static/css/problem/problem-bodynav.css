@@ -1,0 +1,41 @@
+.body-nav,
+.container-body-nav,
+.body-nav-ul,
+.body-search-form {
+    display: flex;
+}
+
+.body-nav {
+    padding: 2rem 0;
+}
+
+.container-body-nav {
+
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+
+.body-nav-li {
+    font-size: 0.8rem;
+    padding: 0.9rem;
+}
+
+.container-body-nav a {
+    font-size: 0.8rem;
+    margin-right: 1rem;
+}
+
+.body-search-form {
+    margin-left: 1rem;
+}
+
+.body-search-form input {
+    padding: 0.4rem 1rem;
+
+}
+
+
+
