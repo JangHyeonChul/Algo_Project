@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.UserMapper">
+
+   <select id="findByUserData" parameterType="String" resultType="MemberDTO">
+        SELECT *
+        FROM user
+        WHERE user_id = #{userData} or user_email = #{userData} or user_nickname = #{userData}
+   </select>
+
+    <insert id="insertUser" parameterType="MemberDTO">
+        INSERT INTO user(user_id, user_email, user_nickname, user_password, user_message, user_role)
+        VALUES(#{user_id}, #{user_email}, #{user_nickname}, #{user_password}, #{user_message}, #{user_role})
+    </insert>
+
+    <select id="findByUserId" parameterType="MemberDTO" resultType="MemberDTO">
+        SELECT *
+        FROM user
+        WHERE user_id = #{user_Id}
+    </select>
+
+    <update id="updateUserMessage" parameterType="String">
+        UPDATE user
+        SET user_message = #{message}
+        WHERE user_id = #{username}
+    </update>
+
+    <update id="updateUserPassword">
+        UPDATE user
+        SET user_password = #{password}
+        WHERE user_id = #{username}
+
+    </update>
+
+    <update id="updateUserAuthGrade">
+        UPDATE user
+        SET user_role = #{grade}
+        WHERE user_id = #{username}
+    </update>
+
+
+
+</mapper>

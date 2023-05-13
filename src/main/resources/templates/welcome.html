@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs">
+  <div class="container"></div>
+</div>
+
+<div class="container">
+  <div class="welcome-message">
+
+    <div th:if="${welcomeMessage} == 'LinkSuccess'">
+      <p>인증이 성공적으로 마무리 되었습니다</p>
+      <p>이제는 글쓰기, 댓글작성 및 알고리즘 도전이 가능하며, 정식회원이 되었습니다</p>
+      <p>사용방법에 대해서는 이용방법을 클릭하시면 상세내용을 확인할수있습니다</p>
+      <p>또한 공지사항도 꼭 확인해주세요</p>
+    </div>
+
+    <div th:if="${welcomeMessage} == 'LinkFail'">
+      <p>이메일 인증 유효시간이 지났습니다</p>
+      <p>마이페이지 - 이메일인증 탭을 이용해서 다시 재요청 해주세요</p>
+    </div>
+
+    <div th:if="${welcomeMessage} == 'RegisterSuccess'">
+      <p>회원가입 절차가 정상적으로 진행되었습니다</p>
+      <p><em style="color: #69b9b9;">Algorithm Online Judge</em> 사이트는 손쉽게 알고리즘을 풀고 채점할수 있는 사이트입니다</p>
+      <p>현재 가입상태는 미인증 상태이며 코드제출, 댓글작성, 게시글 작성이 제한되며, 랭킹에 뜨지 않습니다</p>
+      <p>여기를 클릭해서 이메일인증 화면으로 갈수있으며, 이메일인증 링크를 클릭하면 제한이 풀립니다</p>
+      <p>문제는 초급, 중급, 고급 순으로 준비되어있으며 영어와 한국어 그리고 각각 알고리즘 종류가 다릅니다</p>
+      <p>알고리즘을 풀고 포인트를 얻어 다른 유저들과 경쟁할수있으며, 포인트에 따라 등급이 매겨집니다</p>
+      <p>지금부터 재미있는 <em style="color: #69b9b9;">알고리즘 세계</em>에 빠져보세요</p><br>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="footer-text container">
+
+  </div>
+
+</div>
+
+
+</body>
+
+</html>

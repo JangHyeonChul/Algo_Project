@@ -1,0 +1,7 @@
+.site-group {
+    background-color: var(--font-color-gray-09);
+    border: 1px solid var(--border-color-C4);
+    margin: 1rem 0;
+    padding: 0.8rem 1rem;
+    line-height: 1.5rem;
+}

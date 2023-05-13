@@ -66,6 +66,14 @@ $('#problemOption_sort1').ready(function () {
     $('#problemOption_etc1').prop("checked", true);
 })
 
+function messagemove() {
+            $(".mini-message").animate({ top: "10px" }, 1000) // 아래로 내리기
+                .delay(2000) // 2초 딜레이
+                .animate({ top: "-100px" }, 1000); // 다시 위로 올리기
+
+
+}
+
 
 
 

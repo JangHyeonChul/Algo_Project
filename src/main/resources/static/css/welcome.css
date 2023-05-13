@@ -1,0 +1,10 @@
+.welcome-message {
+    text-align: center;
+    line-height: 2rem;
+    font-size: 2.5rem;
+    margin: 7rem 0;
+}
+
+.welcome-message p {
+    font-size: 1rem;
+}

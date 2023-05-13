@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs"></div>
+
+</div>
+
+
+
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="board-write-container">
+
+    <form th:action="@{/admin/notification}" th:object="${notificationDTO}" method="post">
+
+    <div class="form-group">
+        <label>공지사항</label>
+      <div class="board-notice-list">
+        <p>글을 쓰기전에 <a style="color: var(--font-color-blue)" href="#">공지사항</a>을 먼저 확인해주세요</p>
+
+      </div>
+    </div>
+
+      <div class="form-group">
+        <label>제목</label>
+        <input th:field="*{noti_title}" type="text"  />
+      </div>
+
+
+      <div class="board-write-content">
+        <textarea th:field="*{noti_content}" name="text" id="boardeditor"></textarea>
+      </div>
+
+      <div class="problem-submit-btn">
+        <button>제출하기</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

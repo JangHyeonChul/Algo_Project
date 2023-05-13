@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.BoardMapper">
+
+    <insert id="insertBoard" parameterType="BoardDTO">
+        INSERT INTO board(user_id, b_title, b_category, b_content, b_lang, b_comment_active)
+        VALUES (#{user_id}, #{b_title}, #{b_category}, #{b_content}, #{b_lang}, #{b_comment_active})
+    </insert>
+
+    <select id="countAllBoard" resultType="int" parameterType="String">
+        SELECT count(*)
+        FROM board
+        WHERE b_category = COALESCE(#{category}, b_category)
+    </select>
+
+    <select id="selectAllBoards" resultType="BoardDTO" >
+        SELECT *
+        FROM board
+        WHERE b_category = COALESCE(#{category}, b_category)
+        ORDER BY b_no DESC
+        LIMIT #{offset}, 20
+    </select>
+
+    <select id="selectBoard" resultType="BoardDTO" parameterType="int">
+        SELECT *
+        FROM board
+        WHERE b_no = #{pageNum}
+    </select>
+
+    <update id="updateBoardViewCnt" parameterType="int">
+        UPDATE board
+        SET b_viewcnt = b_viewcnt + 1
+        WHERE b_no = #{pageNum}
+    </update>
+
+    <select id="selectAllBoardsByUser" parameterType="String" resultType="BoardDTO">
+        SELECT *
+        FROM board
+        WHERE user_id = #{username}
+    </select>
+
+    <select id="selectAllBoardsBySearch" resultType="BoardDTO">
+        SELECT *
+        FROM board
+        WHERE b_no LIKE concat('%', #{keyword}, '%')
+           OR b_content LIKE concat('%', #{keyword}, '%')
+           OR b_title LIKE concat('%', #{keyword}, '%')
+            OR user_id LIKE concat('%' #{keyword}, '%')
+        ORDER BY b_no ASC
+            LIMIT #{offset}, 20
+    </select>
+
+
+</mapper>

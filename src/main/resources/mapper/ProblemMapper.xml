@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.ProblemMapper">
+
+    <select id="selectAllProblems" resultType="ProblemDTO" parameterType="Int" >
+        SELECT *
+        FROM problem
+        ORDER BY p_no DESC
+        LIMIT #{offset}, 20
+    </select>
+
+    <select id="selectAllProblemsByType" resultType="ProblemDTO">
+        SELECT *
+        FROM problem
+        WHERE p_type = #{typename}
+        ORDER BY p_no DESC
+        LIMIT #{offset}, 20;
+    </select>
+
+    <select id="selectAllProblemsByOption" resultType="ProblemDTO">
+        SELECT *
+        FROM problem
+        <where>
+            <if test="problemOptionDTO.category != 'total'">
+                <if test="problemOptionDTO.category == 'string'">
+                    AND p_type = '문자열'
+                </if>
+
+                <if test="problemOptionDTO.category == 'arki'">
+                    AND p_type = '사칙연산'
+                </if>
+
+                <if test="problemOptionDTO.category == 'sort'">
+                    AND p_type = '정렬'
+                </if>
+            </if>
+
+            <if test="problemOptionDTO.level != 'total'">
+                AND p_level = #{problemOptionDTO.level}
+            </if>
+
+            <if test="problemOptionDTO.lang != 'total'">
+                AND p_lang = #{problemOptionDTO.lang}
+            </if>
+
+            <if test="problemOptionDTO.etc != 'total'">
+                <if test="problemOptionDTO.etc == 'zero'">
+                    AND num_correct = 0
+                </if>
+                <if test="problemOptionDTO.etc == 'one'">
+                    AND num_correct = 1
+                </if>
+            </if>
+
+        </where>
+
+        <if test="problemOptionDTO.order == 'random'">
+            ORDER BY RAND()
+        </if>
+
+        <if test="problemOptionDTO.order == 'desc'">
+            ORDER BY p_no DESC
+        </if>
+
+        <if test="problemOptionDTO.order == 'asc'">
+            ORDER BY p_no ASC
+        </if>
+
+        <if test="problemOptionDTO.order == 'level'">
+            ORDER BY
+            CASE p_level
+            WHEN '하' THEN 1
+            WHEN '중' THEN 2
+            WHEN '상' THEN 3
+            ELSE 4
+            END
+        </if>
+        LIMIT #{offset}, 20
+    </select>
+
+    <select id="selectAllProblemsBySearch" resultType="ProblemDTO">
+        SELECT *
+        FROM problem
+        WHERE p_no LIKE concat('%', #{keyword}, '%')
+           OR p_content LIKE concat('%', #{keyword}, '%')
+           OR p_title LIKE concat('%', #{keyword}, '%')
+        ORDER BY p_no ASC
+            LIMIT #{offset}, 20
+    </select>
+
+
+
+    <insert id="insertProblem" parameterType="ProblemDTO">
+        INSERT INTO problem(p_title, p_level, p_type, p_lang, p_content, p_hint, p_input, p_output, user_id, p_hint_active)
+        VALUES(#{p_title}, #{p_level}, #{p_type}, #{p_lang}, #{p_content}, #{p_hint}, #{p_input}, #{p_output}, #{user_id}, #{p_hint_active})
+    </insert>
+
+    <select id="countProblems" resultType="Int">
+        SELECT count(*)
+        FROM problem
+    </select>
+
+    <select id="selectProblem" resultType="ProblemDTO" parameterType="Int">
+        SELECT *
+        FROM problem
+        WHERE p_no = #{pageNum}
+    </select>
+
+    <select id="selectProblemAnswer" parameterType="Int" resultType="AnswerDTO">
+        SELECT *
+        FROM problem_answer
+        WHERE p_no = #{pageNum}
+    </select>
+
+    <insert id="insertSolveHistory" parameterType="SolveHistoryDTO">
+        INSERT INTO solve_history(user_id, p_no, success_chk, submit_lang, submit_fail)
+        VALUES (#{user_id}, #{p_no}, #{success_chk}, #{submit_lang}, #{submit_fail})
+    </insert>
+
+    <select id="selectSolveHistorys" resultType="SolveHistoryDTO">
+        SELECT *
+        FROM solve_history
+        WHERE user_id = #{username} AND p_no = #{p_no}
+    </select>
+
+    <update id="updateAddPoint" >
+        UPDATE user
+        SET user_point = user_point + #{point}
+        WHERE user_id = #{username}
+    </update>
+
+    <insert id="insertSolveMember">
+        INSERT INTO solve(p_no, memberid)
+        VALUES ( #{p_no}, #{username} )
+    </insert>
+
+    <select id="selectSolveMember" resultType="SolveDTo">
+        SELECT *
+        FROM solve
+        WHERE memberid = #{username} AND p_no = #{p_no}
+    </select>
+
+
+    <insert id="insertProblemAnswer">
+        INSERT INTO problem_answer(p_no, answer_input, answer_output)
+        VALUES (#{p_no}, #{answer_input}, #{answer_output})
+    </insert>
+
+    <select id="selectLastInsertID" resultType="int">
+        SELECT LAST_INSERT_ID();
+    </select>
+
+    <select id="selectAllSolveMember" resultType="SolveDTO" parameterType="String">
+        SELECT *
+        FROM solve
+        WHERE memberid = #{username}
+    </select>
+
+    <select id="selectProblemTypeCount" parameterType="String" resultType="Int">
+        SELECT count(p_no)
+        FROM problem
+        WHERE p_type = #{typeName}
+    </select>
+
+    <select id="countProblemsByOption" resultType="int" parameterType="ProblemOptionDTO">
+        SELECT count(*)
+        FROM problem
+        <where>
+            <if test="category != 'total'">
+                <if test="category == 'string'">
+                    AND p_type = '문자열'
+                </if>
+
+                <if test="category == 'arki'">
+                    AND p_type = '사칙연산'
+                </if>
+
+                <if test="category == 'sort'">
+                    AND p_type = '정렬'
+                </if>
+            </if>
+
+            <if test="level != 'total'">
+                AND p_level = #{level}
+            </if>
+
+            <if test="lang != 'total'">
+                AND p_lang = #{lang}
+            </if>
+
+            <if test="etc != 'total'">
+                <if test="etc == 'zero'">
+                    AND num_correct = 0
+                </if>
+                <if test="etc == 'one'">
+                    AND num_correct = 1
+                </if>
+            </if>
+
+        </where>
+
+        <if test="order == 'random'">
+            ORDER BY RAND()
+        </if>
+
+        <if test="order == 'desc'">
+            ORDER BY p_no DESC
+        </if>
+
+        <if test="order == 'asc'">
+            ORDER BY p_no ASC
+        </if>
+
+        <if test="order == 'level'">
+            ORDER BY
+            CASE p_level
+            WHEN '하' THEN 1
+            WHEN '중' THEN 2
+            WHEN '상' THEN 3
+            ELSE 4
+            END
+        </if>
+
+
+    </select>
+
+    <select id="countProblemsBySearch" parameterType="String" resultType="Integer">
+        SELECT *
+        FROM problem
+        WHERE p_no LIKE concat('%', #{keyword}, '%')
+           OR p_content LIKE concat('%', #{keyword}, '%')
+           OR p_title LIKE concat('%', #{keyword}, '%')
+        ORDER BY p_no ASC
+    </select>
+
+    <select id="countSuccessProblem" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM solve
+        WHERE memberid = #{username}
+    </select>
+
+    <select id="countFailProblem" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM solve_history
+        WHERE user_id = #{username} AND success_chk = '틀렸습니다'
+    </select>
+
+    <select id="countSubmitProblem" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM solve_history
+        WHERE user_id = #{username}
+    </select>
+
+</mapper>

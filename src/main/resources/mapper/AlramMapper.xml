@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.AlramMapper">
+
+    <insert id="insertBoardAlram" parameterType="AlramDTO">
+        INSERT INTO commentalram(b_no, receive_user_id)
+        VALUES (#{b_no}, #{receive_user_id})
+    </insert>
+
+    <select id="selectBoardAlrams" parameterType="String" resultType="AlramBoardDTO">
+        SELECT a_no, commentalram.b_no, receive_user_id, a_check, b_title, b_category
+        FROM commentalram
+                 INNER JOIN board
+                            ON commentalram.b_no = board.b_no
+        WHERE commentalram.receive_user_id = #{username}
+    </select>
+
+    <select id="selectBoardAlram"  resultType="AlramDTO">
+        SELECT *
+        FROM commentalram
+        WHERE receive_user_id = #{username} AND b_no = #{b_no}
+    </select>
+
+    <update id="updateBoardAlram" >
+        UPDATE commentalram
+        SET a_check = '1'
+        WHERE receive_user_id = #{username} AND b_no = #{b_no}
+    </update>
+
+</mapper>

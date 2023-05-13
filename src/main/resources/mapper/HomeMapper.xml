@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.HomeMapper">
+
+    <select id="selectHomeLevel" resultType="LevelCountDTO">
+        SELECT
+                (SELECT COUNT(p_level) FROM problem) AS totalProblemCount,
+                (SELECT COUNT(p_level) FROM problem WHERE p_level = '하') AS easyProblemCount,
+                (SELECT COUNT(p_level) FROM problem WHERE p_level = '중') AS normalProblemCount,
+                (SELECT COUNT(p_level) FROM problem WHERE p_level = '상') AS hardProblemCount;
+    </select>
+
+</mapper>

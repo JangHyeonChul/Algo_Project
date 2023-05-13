@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.BoardCommentMapper">
+
+    <insert id="insertBoardComment" parameterType="CommentDTO">
+        INSERT INTO boardcomment(b_no, user_id, c_comment)
+        VALUES (#{b_no}, #{user_id}, #{c_comment})
+    </insert>
+
+    <select id="selectBoardComments" parameterType="int" resultType="CommentDTO">
+        SELECT *
+        FROM boardcomment
+        WHERE b_no = #{b_no}
+    </select>
+
+    <select id="selectBoardCommentCount" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM boardcomment
+        WHERE b_no = #{b_no}
+    </select>
+
+    <update id="updateBoardComment" parameterType="int">
+        UPDATE board
+        SET b_comment_cnt = (
+            SELECT count(*)
+            FROM boardcomment
+            WHERE boardcomment.b_no = board.b_no
+        )
+        WHERE b_no = #{boardNum};
+    </update>
+
+
+
+</mapper>

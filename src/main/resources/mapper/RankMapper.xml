@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.RankMapper">
+
+    <select id="selectRankByUserName" resultType="RankDTO" parameterType="String">
+        SELECT
+            rankquery.user_rank,
+            rankquery.username,
+            rankquery.problem_count,
+            rankquery.message,
+            rankquery.point
+        FROM
+            (
+                SELECT
+                    RANK() OVER (ORDER BY user.user_point DESC) as user_rank,
+                        user.user_id as username,
+                    user.user_message as message,
+                    COUNT(solve.p_no) as problem_count,
+                    user.user_point as point
+                FROM
+                    user
+                        LEFT JOIN solve on user.user_id = solve.memberid
+                GROUP BY user.user_id
+            ) rankquery
+        WHERE username = #{username}
+
+    </select>
+
+
+    <select id="selectRank" resultType="RankDTO">
+        SELECT
+            rankquery.user_rank,
+            rankquery.username,
+            rankquery.problem_count,
+            rankquery.message,
+            rankquery.point
+        FROM
+            (
+                SELECT
+                    RANK() OVER (ORDER BY user.user_point DESC) as user_rank,
+                        user.user_id as username,
+                    user.user_message as message,
+                    COUNT(solve.p_no) as problem_count,
+                    user.user_point as point
+                FROM
+                    user
+                        LEFT JOIN solve on user.user_id = solve.memberid
+                GROUP BY user.user_id
+            ) rankquery
+        LIMIT 0, 50
+    </select>
+
+
+</mapper>

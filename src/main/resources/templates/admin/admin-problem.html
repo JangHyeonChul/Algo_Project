@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+
+<div th:replace="/fragments/nav"></div>
+
+
+
+<div class="breadcrumbs"></div>
+
+<div class="container">
+    <div class="admin-noti">
+    <p>관리자 페이지에서만 접근가능한 관리자 페이지입니다</p>
+    <p>세션 만료 및 관리자가 아닌경우에는 접근이 불가하며, 등록또한 불가능 합니다</p>
+    <p>문제 등록할때는 공백이나 입출력값이 틀리지않게 조심해주세요</p>
+    </div>
+</div>
+
+
+
+<div class="container board-content-body">
+<form th:object="${problemDTO}" th:action="@{/admin/problem}" method="post">
+    <div class="board-content-text">
+        <div class="headline"><h1>제목</h1></div>
+        <input th:field="*{p_title}" style="width: 40%;" type="text" placeholder="제목을 입력해주세요(최대사이즈 300)" />
+    </div>
+
+
+
+    <div class="board-content-text">
+        <div class="headline"><h1>옵션</h1></div>
+        <div class="problem-admin-option">
+            <h1>난이도</h1>
+
+            <label>하</label>
+            <input  th:value="하" type="radio" name="p_level" checked/>
+            <label>중</label>
+            <input  th:value="중" type="radio" name="p_level"/>
+            <label>상</label>
+            <input  th:value="상" type="radio" name="p_level"/>
+        </div>
+
+        <div class="problem-admin-option">
+            <h1>알고리즘 종류</h1>
+
+            <labal>문자열</labal>
+            <input th:field="*{p_type}" value="문자열" type="radio" />
+            <labal>사칙연산</labal>
+            <input th:field="*{p_type}" value="사칙연산" type="radio"/>
+            <labal>정렬</labal>
+            <input th:field="*{p_type}" value="정렬" type="radio"/>
+        </div>
+
+        <div class="problem-admin-option">
+            <h1>힌트</h1>
+
+            <labal>사용</labal>
+            <input th:field="*{p_hint_active}" value="true" type="radio" />
+            <labal>사용안함</labal>
+            <input th:field="*{p_hint_active}" value="false" type="radio"/>
+
+        </div>
+
+        <div class="problem-admin-option">
+            <h1>언어</h1>
+
+            <labal>한국어</labal>
+            <input th:field="*{p_lang}" value="한국어" type="radio" />
+            <labal>영어</labal>
+            <input th:field="*{p_lang}" value="영어"  type="radio"/>
+
+        </div>
+    </div>
+
+
+    <div class="board-content-text">
+        <div class="headline"><h1>상세설명</h1></div>
+            <textarea th:field="*{p_content}" name="text" id="boardeditor"></textarea>
+    </div>
+
+
+
+    <div class="board-content-text">
+        <div class="headline"><h1>입력값</h1></div>
+        <input style="width: 45%;"type="text"
+               placeholder="입력값을 위한 변수를 써주세요 (예시 : 정수형 변수 a와 b를 입력받는다)"
+               th:field="*{p_input}"/>
+    </div>
+
+
+    <div class="board-content-text">
+        <div class="headline"><h1>출력값</h1></div>
+        <input style="width: 45%;"type="text"
+               placeholder="출력값을 위한 변수를 써주세요 (예시 : a+b의 값을 출력한다)"
+               th:field="*{p_output}"/>
+    </div>
+
+
+    <div class="board-content-example">
+        <div class="board-content-text">
+            <div class="headline" style="width: 90%;">
+                <h1>테스트 케이스 입력</h1>
+            </div>
+
+            <div style="width: 90%;" class="board-content-example-input">
+                <input type="text" placeholder="입력값을 기입해주세요 (예시 : 1 2)"
+                style="background: none; border: none; width: 100%;"
+                name="inputs[]"/>
+            </div>
+        </div>
+
+        <div class="board-content-text">
+            <div class="headline" style="width: 90%;"><h1>테스트 케이스 출력</h1></div>
+            <div style="width: 90%;" class="board-content-example-result">
+                <input type="text" placeholder="출력 (예시 : 3)"
+                       style="background: none; border: none; width: 100%;"
+                name="outputs[]"/>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="board-content-example">
+        <div class="board-content-text">
+            <div style="width: 90%;" class="board-content-example-input">
+                <input type="text" placeholder="입력값을 기입해주세요 (예시 : 1 2)"
+                       style="background: none; border: none; width: 100%;"
+                       name="inputs[]"/>
+            </div>
+        </div>
+        <div class="board-content-text">
+            <div style="width: 90%;" class="board-content-example-result">
+                <input type="text" placeholder="출력 (예시 : 3)"
+                       style="background: none; border: none; width: 100%;"
+                       name="outputs[]"/>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="board-content-example">
+        <div class="board-content-text">
+            <div style="width: 90%;" class="board-content-example-input">
+                <input type="text" placeholder="입력값을 기입해주세요 (예시 : 1 2)"
+                       style="background: none; border: none; width: 100%;"
+                       name="inputs[]"/>
+            </div>
+        </div>
+        <div class="board-content-text">
+            <div style="width: 90%;" class="board-content-example-result">
+                <input type="text" placeholder="출력 (예시 : 3)"
+                       style="background: none; border: none; width: 100%;"
+                       name="outputs[]"/>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="board-content-text">
+        <div class="headline"><h1>힌트</h1></div>
+        <input style="width: 80%;" type="text" placeholder="간단한 힌트를 입력할수있습니다 "
+        th:field="*{p_hint}"/>
+    </div>
+
+    <div class="problem-submit-btn">
+        <button>제출하기</button>
+    </div>
+</form>
+</div>
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+
+</body>
+
+</html>

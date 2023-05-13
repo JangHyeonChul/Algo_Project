@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs"></div>
+<div class="container body-nav">
+  <div class="container-body-nav">
+    <ul class="body-nav-ul">
+      <a th:href="@{/board}">
+        <li class="body-nav-li">전체게시판</li>
+      </a>
+      <a th:href="@{/board/type/{category}(category = 'QU')}">
+        <li th:style="${category == 'QU' ? 'background-color: #428bca; color: white;' : ''}" class="body-nav-li">질문게시판</li></a>
+      <a th:href="@{/board/type/{category}(category = 'FR')}">
+        <li th:style="${category == 'FR' ? 'background-color: #428bca; color: white;' : ''}"class="body-nav-li">자유게시판</li></a>
+      <a th:href="@{/board/type/{category}(category = 'TE')}">
+        <li th:style="${category == 'TE' ? 'background-color: #428bca; color: white;' : ''}"class="body-nav-li">강의게시판</li></a>
+      <a th:href="@{/board/write}"><li style="color:red;" class="body-nav-li">글쓰기</li></a>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="board-write-container">
+
+    <form th:action="@{/board/write}" th:object="${boardDTO}" method="post">
+
+    <div class="form-group">
+        <label>공지사항</label>
+      <div class="board-notice-list">
+        <p>글을 쓰기전에 <a style="color: var(--font-color-blue)" href="#">공지사항</a>을 먼저 확인해주세요</p>
+
+      </div>
+    </div>
+
+      <div class="form-group">
+        <label>제목</label>
+        <input type="text" th:field="*{b_title}" />
+      </div>
+
+      <div class="form-group">
+        <label>카테고리</label>
+        <select th:field="*{b_category}">
+          <option value="QU">질문</option>
+          <option value="FR">자유</option>
+          <option value="TE">강의</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>사용언어</label>
+        <select th:field="*{b_lang}">
+          <option value="JAVA">JAVA</option>
+          <option value="C">C</option>
+          <option value="PYTHON">파이썬</option>
+        </select>
+      </div>
+
+      <div class="comment-group">
+        <label>댓글사용여부</label>
+
+        <div class="commnet_active">
+          <label>사용</label>
+          <input type="radio" name="b_comment_active" checked/>
+          <label>미사용</label>
+          <input type="radio" name="b_comment_active" />
+        </div>
+      </div>
+
+      <div class="board-write-content">
+        <textarea th:field="*{b_content}" name="text" id="boardeditor"></textarea>
+      </div>
+
+      <div class="problem-submit-btn">
+        <button th:onclick="submitCode()">제출하기</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+.admin-noti {
+    text-align: center;
+    line-height: 2rem;
+    margin: 1rem 0;
+}
+
+.board-content-text input {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+
+}
+
+.problem-admin-option {
+    display: flex;
+    margin: 1.5rem 0;
+    color: var(--font-color-gray-07);
+    font-size: 0.9rem;
+
+}
+
+.problem-admin-option input {
+    margin-left: 0.5rem;
+    margin-right: 2rem;
+}
+
+
+.problem-admin-option h1 {
+    width: 20%;
+}

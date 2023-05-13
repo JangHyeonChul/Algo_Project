@@ -1,0 +1,13 @@
+.rank_top {
+    display: flex;
+    align-items: center;
+
+}
+
+.table-border {
+    margin-bottom: 2rem;
+}
+
+.rank_h1 {
+    margin-bottom: 1rem;
+}

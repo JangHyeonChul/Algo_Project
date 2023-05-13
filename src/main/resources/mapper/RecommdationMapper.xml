@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.RecommdationMapper">
+
+    <insert id="insertBoardRecommdation">
+        INSERT INTO recommdation(user_id, b_no)
+        VALUES(#{username}, #{b_no})
+    </insert>
+
+    <select id="selectBoardRecommdation" resultType="RecommdationDTO">
+        SELECT *
+        FROM recommdation
+        WHERE b_no = #{b_no} AND user_id = #{username}
+    </select>
+
+    <update id="updateBoardRecommdationCnt" parameterType="int">
+        UPDATE board
+        SET b_recommdation = (
+            SELECT COUNT(*)
+            FROM recommdation
+            WHERE board.b_no = recommdation.b_no
+            )
+        WHERE b_no = #{b_no}
+    </update>
+
+    <select id="getBoardRecommdationCount" parameterType="int" resultType="int">
+        SELECT b_recommdation
+        FROM board
+        WHERE b_no = #{b_no}
+    </select>
+
+
+
+</mapper>

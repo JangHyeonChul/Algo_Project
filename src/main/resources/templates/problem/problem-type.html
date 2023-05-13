@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+<div th:replace="/fragments/nav"></div>
+<div class="breadcrumbs"></div>
+
+<div class="container body-nav">
+  <div class="container-body-nav">
+    <ul class="body-nav-ul">
+      <a th:href="@{/problem}"><li class="body-nav-li" >전체</li></a>
+      <a th:href="@{/problem/type}"><li style="background-color: #428bca; color: white;" class="body-nav-li">종류별문제</li></a>
+      <a th:href="@{/random}"><li class="body-nav-li">랜덤</li></a>
+
+
+    </ul>
+  </div>
+</div>
+
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="body-qeustion-table">
+    <table class="table table-border">
+      <thead>
+      <tr>
+        <th style="width: 45%;">종류</th>
+        <th style="width: 45%;"></th>
+        <th style="width: 10%;">제공문제수</th>
+
+      </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><a th:href="@{/problem(use= 'used', type = 'arki')}">사칙연산</a></td>
+          <td><a th:href="@{/problem(use= 'used', type = 'arki')}">Arithmetic</a></td>
+          <td th:text="${problemTypeCount['arithmetic']}"></td>
+        </tr>
+      </tbody>
+
+      <tbody>
+      <tr>
+        <td><a th:href="@{/problem(use= 'used', type = 'string')}">문자열</a></td>
+        <td><a th:href="@{/problem(use= 'used', type = 'string')}">String</a></td>
+        <td th:text="${problemTypeCount['string']}"></td>
+      </tr>
+      </tbody>
+
+      <tbody>
+      <tr>
+        <td><a th:href="@{/problem(use= 'used', type = 'sort')}">정렬</a></td>
+        <td><a th:href="@{/problem(use= 'used', type = 'sort')}">Sorting</a></td>
+        <td th:text="${problemTypeCount['sorting']}"></td>
+      </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+</div>
+
+
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+
+</body>
+
+</html>

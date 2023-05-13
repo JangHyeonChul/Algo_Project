@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+
+<div class="breadcrumbs"></div>
+
+<div class="container">
+
+  <h1 class="notifi_title" th:text="${board.b_title}">제목</h1>
+  <div class="board_container">
+    <div class="board_notifi_title">
+      <h2 th:text="${board.b_title}"></h2>
+      <button th:onclick="|javascript:recommdationSubmit('${boardNumber}')|" type="button">
+        <i style="font-size: 1rem; cursor: pointer;" class="fas fa-thumbs-up"></i>
+      </button>
+    </div>
+    <div class="board_notifi_content" th:utext="${board.b_content}">
+
+    </div>
+    <div class="board_notifi_push">
+    </div>
+
+    <div class="board_notifi_userInfo">
+      <p class="margin-right-1" th:text="'작성자 : ' + ${board.user_id}">작성자</p>
+      <div class="board_recommdation margin-right-1">
+      <p th:text="'추천수 : ' + ${board.b_recommdation}">
+        추천수 : 1
+      </p>
+      </div>
+      <p class="margin-right-1" th:text="'조회수 : ' + ${board.b_viewcnt}">조회수</p>
+      <p class="margin-right-1" th:text="'작성일 : ' + ${board.b_transCreate}">작성일</p>
+    </div>
+  </div>
+</div>
+
+<div class="container board-content-box">
+
+  <div th:each="boardcomment : ${boardComments}" class="board_container board_comment" style="border-radius: 1rem">
+    <div class="board_notifi_content" th:utext="${boardcomment.c_comment}">
+
+    </div>
+    <div class="board_notifi_userInfo">
+      <p class="margin-right-1" th:text="'작성자 : ' + ${boardcomment.user_id}">작성자</p>
+      <p class="margin-right-1" th:text="'작성일 : ' + ${boardcomment.c_transCreate}">작성일</p>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="board_container" style="border-radius: 1rem">
+    <div class="board_notifi_content">
+    <textarea class="comment-textarea" placeholder="댓글 작성하기"></textarea>
+    </div>
+  </div>
+  <div class="problem-submit-btn">
+    <button type="button" th:onclick="|javascript:commentSubmit('${boardNumber}')|">제출하기</button>
+  </div>
+</div>
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="body-qeustion-table">
+    <table class="table table-border">
+      <thead>
+      <tr>
+        <th style="width: 10%;">문제번호</th>
+        <th style="width: 45%;">제목</th>
+        <th style="width: 15%;">작성자</th>
+        <th style="width: 5%;">조회수</th>
+        <th style="width: 5%;">댓글</th>
+        <th style="width: 5%;">추천수</th>
+        <th style="width: 15%;">작성일</th>
+      </tr>
+      </thead>
+
+      <div th:each="board :${boards}">
+
+        <tbody>
+        <tr>
+          <td th:text="*{board.b_no}">1000번</td>
+          <td>
+            <div>
+              <a class="board-tag qu" th:if="${board.b_category.equals('QU')}" th:href="@{/board/type/{category}(category = 'QU')}">[질문]</a>
+              <a class="board-tag fr" th:if="${board.b_category.equals('FR')}" th:href="@{/board/type/{category}(category = 'FR')}">[자유]</a>
+              <a class="board-tag te" th:if="${board.b_category.equals('TE')}" th:href="@{/board/type/{category}(category = 'TE')}">[강의]</a>
+              <a th:text="*{board.b_title}" th:href="@{{pageNum}(pageNum = *{board.b_no}, page= '1')}"></a>
+            </div>
+          </td>
+          <td th:text="*{board.user_id}">wkdgus1136</td>
+          <td th:text="*{board.b_viewcnt}">1</td>
+          <td th:text="*{board.b_comment_cnt}">0</td>
+          <td th:text="*{board.b_recommdation}">0</td>
+          <td th:text="*{board.b_transCreate}">1일전</td>
+        </tr>
+        </tbody>
+      </div>
+    </table>
+  </div>
+</div>
+
+<div class="problem-page-nav">
+
+  <div  th:if="${ph.isShowPrev()}">
+    <a class="problem-page-nav-box" th:href="@{'?page=' + ${ph.page - 1}}">
+      <i class="fas fa-chevron-left"></i></a>
+  </div>
+
+  <div th:each="i : ${#numbers.sequence(ph.beginPage, ph.endPage)}">
+    <a class="problem-page-nav-box"
+       th:text="${i}"
+       th:href="@{'?page=' + ${i}}" th:classappend="${ph.page == i} ? 'color-red' : ''"></a>
+
+  </div>
+
+  <div th:if="${ph.isShowNext()}">
+    <a class="problem-page-nav-box" th:href="@{'?page=' +   ${ph.page + 1}}">
+      <i class="fas fa-chevron-right"></i></a>
+  </div>
+
+</div>
+
+
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+
+</body>
+
+</html>

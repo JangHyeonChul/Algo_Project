@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.NotificationMapper">
+<insert id="insertNotification" parameterType="NotificationDTO">
+    INSERT INTO notification(user_id, noti_title, noti_content)
+VALUES(#{user_id}, #{noti_title}, #{noti_content} )
+</insert>
+
+    <select id="selectNotificationBoard" parameterType="int" resultType="NotificationDTO">
+        SELECT *
+        FROM notification
+        ORDER BY noti_no DESC
+        LIMIT #{offset}, 20
+    </select>
+
+    <select id="countAllNotifications" resultType="int">
+        SELECT count(*)
+        FROM notification
+    </select>
+
+    <select id="selectNotificationBoardByPageNum" resultType="NotificationDTO" parameterType="int">
+        SELECT *
+        FROM notification
+        WHERE noti_no = #{pageNum}
+    </select>
+
+    <select id="selectNotificationBoardBySearch" resultType="NotificationDTO">
+        SELECT *
+        FROM notification
+        WHERE noti_no LIKE concat('%', #{keyword}, '%')
+           OR noti_content LIKE concat('%', #{keyword}, '%')
+           OR noti_title LIKE concat('%', #{keyword}, '%')
+           OR user_id LIKE concat('%' #{keyword}, '%')
+        ORDER BY noti_no ASC
+            LIMIT #{offset}, 20
+    </select>
+
+</mapper>

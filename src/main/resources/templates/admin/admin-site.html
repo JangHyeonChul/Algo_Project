@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs"></div>
+
+</div>
+
+
+
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="board-write-container">
+
+    <form th:action="@{/admin/link}" th:object="${siteLinkDTO}" method="post">
+
+<div class="admin-noti">
+  <p>알고리즘과 관련된 여러 사이트들을 등록해서 사용자에게 보여줄수있습니다</p>
+  <p>제목과 사이트의 링크를 걸면 상단 관련사이트 탭에 들어가게됩니다</p>
+</div>
+
+
+      <div class="form-group">
+        <label>관련 사이트 제목</label>
+        <input th:field="*{algo_title}" type="text"  />
+      </div>
+
+      <div class="form-group">
+        <label>사이트 링크</label>
+        <input th:field="*{algo_link}" type="text"  />
+      </div>
+
+        <div class="form-group">
+            <label>사이트 설명 요약</label>
+            <input th:field="*{algo_content}" type="text"  />
+        </div>
+
+      <div class="problem-submit-btn">
+        <button>제출하기</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

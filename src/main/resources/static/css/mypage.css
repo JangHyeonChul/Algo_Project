@@ -1,0 +1,144 @@
+.mypage {
+    display: flex;
+    padding: 3rem 0;
+
+}
+
+.mypage-text {
+    text-align: center;
+    margin: 2rem 0;
+    line-height: 2rem;
+    font-size: 1.2rem;
+}
+
+.error {
+    margin: 0.8rem 0;
+    color: #ff4e4e;
+}
+
+.profile_img {
+    height: 100px;
+    width: 100px;
+}
+
+.img-upload label,
+.img-upload p{
+    margin: 1rem 0;
+    color: var(--font-color-gray-05);
+
+}
+
+.mypage-sidenav {
+    width: 25%;
+}
+
+.mypage-sidenav h1 {
+    color: var(--font-color-gray-01);
+    font-size: 0.8rem;
+    margin: 1rem 0;
+}
+
+.mypage-sidebox li {
+    border-bottom: 1px solid #ddd;
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+}
+
+.mypage-sidebox li:hover {
+    background-color: #ddd;
+}
+
+.mypage-sidebox {
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin-bottom: 3rem;
+}
+
+.mypage-info {
+    display: block;
+    width: 75%;
+    padding-left: 2rem;
+    justify-content: center;
+}
+
+.mypage-title {
+    font-size: 1.2rem;
+    color: var(--font-color-gray-01);
+    margin-bottom: 1rem;
+}
+
+.img-upload {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    width: 100%;
+    align-items: center;
+}
+
+.data-box {
+    display: block;
+}
+
+.email-message {
+    color : var(--font-color-gray-05);
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 1.2rem 0;
+}
+
+.mypage-board {
+    margin: 1rem 0;
+}
+
+.mypage-board h1 {
+    margin-bottom: 1rem;
+}
+
+.mypage-writeboard {
+    display: flex;
+    background-color: #f3f3f3;
+    padding: 0.7rem 0.7rem;
+    font-size: 0.8rem;
+    border: 1px solid #e1e1e1;
+}
+
+.alter-nav {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+
+.alter-message {
+    margin: 1rem 0;
+    color: var(--font-color-gray-07);
+    background-color: #f8f8f8;
+    font-size: 0.9rem;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.AlramBtn {
+    color: var(--font-color-gray-01);
+    transition: all ease 0.3s;
+    cursor : pointer;
+}
+
+.AlramBtn:hover {
+    color: var(--font-color-blue);
+    transition: all ease 0.3s;
+}
+
+.user-data-gruop {
+    margin: 1rem 0;
+    background-color: var(--font-color-gray-09);
+    padding: 1rem 1rem;
+}
+
+.user-data-gruop h1 {
+    color: var(--font-color-gray-07);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+
+}

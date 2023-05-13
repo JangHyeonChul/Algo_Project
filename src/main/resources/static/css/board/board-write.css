@@ -1,0 +1,54 @@
+.board-write-container {
+    height: 300px;
+}
+
+.comment-group,
+.form-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin : 1rem 0;
+
+}
+
+.comment-group label,
+.form-group label {
+    width: 10%;
+    font-size: 0.8rem;
+    color: var(--font-color-gray-01);
+    margin: 0 1rem;
+}
+
+
+.form-group select,
+.form-group input,
+.board-notice-list {
+    margin: 0.5rem 1rem;
+    font-size: 0.9rem;
+    text-align: left;
+    color: var(--font-color-gray-01);
+    line-height: 1.3rem;
+
+}
+
+.form-group select,
+.form-group input {
+    border: 1px solid #ccc;
+    width: 10rem;
+    padding: 0.3rem 0.5rem;
+}
+
+.commnet_active {
+    width: 70%;
+    margin: 1rem 0;
+}
+
+
+.form-group input {
+    width: 30%;
+}
+
+.board-write-content {
+    margin : 5rem 0;
+}
+

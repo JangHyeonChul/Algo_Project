@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.algorithm.algoproject.mapper.TokenLinkMapper">
+
+    <insert id="insertTokenLink" parameterType="TokenLinkDTO">
+        INSERT INTO token(t_no, user_id, t_create, t_create_expiry, t_create_reset)
+        VALUES(#{t_no}, #{user_id}, #{t_create}, #{t_create_expiry}, #{t_create_reset})
+    </insert>
+
+    <select id="selectTokenLink" resultType="TokenLinkDTO" parameterType="String">
+        SELECT *
+        FROM token
+        WHERE user_id = #{username}
+    </select>
+
+    <update id="updateTokenLink" parameterType="TokenLinkDTO">
+        UPDATE token
+        SET t_no = #{t_no},
+            t_create = #{t_create},
+            t_create_expiry = #{t_create_expiry}
+        WHERE user_id = #{user_id}
+    </update>
+
+    <update id="updateTokenLinkTrial" parameterType="String">
+        UPDATE token
+        SET t_trial = t_trial + 1
+        WHERE user_id = #{username}
+    </update>
+
+    <update id="updateTokenLinkReset" parameterType="String">
+        UPDATE token
+        SET t_trial = 0
+        WHERE user_id = #{username}
+    </update>
+
+    <update id="updateTokenLinkResetTime" >
+        UPDATE token
+        SET t_create_reset = #{resetTime}
+        WHERE user_id = #{username}
+    </update>
+</mapper>
