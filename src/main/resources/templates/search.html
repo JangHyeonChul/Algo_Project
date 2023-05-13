@@ -10,8 +10,7 @@
   <div class="container search-container">
     <h1>검색</h1>
     <div class="search-group">
-      <input type="text"/>
-      <button><i style="color: white;" class="fas fa-search"></i></button>
+      <input class="search-input" type="text"/>
     </div>
   </div>
 
@@ -25,10 +24,9 @@
     <div class="search-sidebar margin-right-1">
       <ul>
         <li><h1>검색 분류</h1></li>
-        <li><a href="#">통합</a></li>
-        <li><a href="#">문제</a></li>
-        <li><a href="#">질문</a></li>
-        <li><a href="#">공지</a></li>
+        <li><a th:href="@{/search(type= 'problem')}">문제</a></li>
+        <li><a th:href="@{/search(type= 'board')}">질문</a></li>
+        <li><a th:href="@{/search(type= 'noti')}">공지</a></li>
       </ul>
     </div>
 
@@ -93,7 +91,6 @@
 
 </div>
 
-<div th:replace="/fragments/footer"></div>
 <div th:replace="/fragments/javascript"></div>
 
 </body>

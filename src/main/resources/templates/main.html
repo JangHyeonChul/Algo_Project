@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs"></div>
+
+<div class="container body-nav">
+  <div class="container home-main">
+    <h2 class="fade-in ">Algorihm Online Judege</h2>
+    <h1 class="home-titleLine margin-bottom-20 fade-in"></h1>
+    <p class="fade-in">알고리즘 문제를 풀고 온라인으로 채점받을 수 있는 곳입니다.</p>
+
+  </div>
+</div>
+<div class="home-solveInfo fade-in">
+  <div class="container home-solveInfo-container">
+    <div class="counter fade-in">
+      <p class="margin-bottom-20" th:text="${levelCount.totalProblemCount}">12345</p>
+      <h1 style="color:#bbb;">전체문제</h1>
+
+    </div>
+    <div class="counter fade-in">
+      <p class="margin-bottom-20" th:text="${levelCount.easyProblemCount}">9478</p>
+      <h1 style="color:#bbb;">초급문제</h1>
+
+    </div>
+    <div class="counter fade-in">
+      <p class="margin-bottom-20" th:text="${levelCount.normalProblemCount}">4345</p>
+      <h1 style="color:#bbb;">중급문제</h1>
+    </div>
+    <div class="counter fade-in">
+      <p class="margin-bottom-20" th:text="${levelCount.hardProblemCount}">115</p>
+      <h1 style="color:#bbb;">고급문제</h1>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="home-minipost-container fade-in">
+    <div class="home-minipost">
+
+      <section class="minipost-section">
+        <div class="home-minipost-header">
+          <h2>랭킹보기</h2>
+        </div>
+
+        <th:block th:each="rank, iterStat : ${rankInfos}" th:if="${iterStat.index} &lt; 4">
+        <div  class="home-minipost-board">
+
+          <div class="mini-content">
+            <span class="margin-right-1">
+              <a style="color: var(--font-color-blue)" th:href="@{/rank}" th:text="${rank.username}">wkdgus1136</a></span>
+            <p th:text="'랭킹 : ' + ${rank.user_rank} + '등'">랭킹 : 1등</p>
+          </div>
+
+          <div class="mini-boardInfo">
+            <p th:text="'포인트 수 : ' + ${rank.point}">포인트 수 : 10 </p>
+            <p th:text="'맞힌 문제 : ' + ${rank.problem_count}">맞힌 문제 : 0 </p>
+          </div>
+        </div>
+        </th:block>
+
+
+      </section>
+
+
+
+    </div>
+
+    <div class="home-minipost">
+
+      <section class="minipost-section">
+
+        <div class="home-minipost-header">
+          <h2>공지사항</h2>
+        </div>
+
+        <th:block th:each="notification, iterStat : ${notifications}" th:if="${iterStat.index} &lt; 4">
+        <div class="home-minipost-board">
+          <div class="mini-content">
+            <span class="margin-right-1">
+              <a style="color: var(--font-color-blue)" th:href="@{/notification}" th:text="${notification.user_id}">wkdgus1136</a></span>
+             <p th:text="${notification.noti_title}"></p>
+          </div>
+
+          <div class="mini-boardInfo">
+            <div th:utext="${notification.noti_content}"></div>
+          </div>
+        </div>
+        </th:block>
+
+      </section>
+
+
+
+    </div>
+
+    <div class="home-minipost">
+
+      <section class="minipost-section">
+        <div class="home-minipost-header">
+          <h2>질문응답</h2>
+        </div>
+
+        <th:block th:each="board, iterStat : ${boards}" th:if="${iterStat.index} &lt; 4">
+          <div class="home-minipost-board">
+            <div class="mini-content">
+            <span class="margin-right-1">
+              <a style="color: var(--font-color-blue)" th:href="@{/board/page/{pageNum}(pageNum = ${board.b_no})}" th:text="${board.user_id}">wkdgus1136</a></span>
+              <p th:text="${board.b_title}"></p>
+            </div>
+
+            <div class="mini-boardInfo">
+              <div th:utext="${board.b_content}"></div>
+            </div>
+          </div>
+        </th:block>
+
+      </section>
+
+
+
+    </div>
+
+    <div class="home-minipost">
+
+      <section class="minipost-section">
+        <div class="home-minipost-header">
+          <h2>문제풀기</h2>
+        </div>
+
+        <th:block th:each="problem, iterStat : ${problems}" th:if="${iterStat.index} &lt; 4">
+          <div class="home-minipost-board">
+            <div class="mini-content">
+            <span class="margin-right-1">
+              <a style="color: var(--font-color-blue)" th:href="@{/problem/{pageNum}(pageNum = ${problem.p_no})}" th:text="${problem.user_id}">wkdgus1136</a></span>
+              <p th:text="${problem.p_title}"></p>
+            </div>
+
+            <div class="mini-boardInfo">
+              <div th:utext="${problem.p_content}"></div>
+            </div>
+          </div>
+        </th:block>
+
+      </section>
+    </div>
+  </div>
+</div>
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+
+
+</body>
+
+</html>

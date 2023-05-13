@@ -69,8 +69,6 @@
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     margin: 1.5rem 0;
-
-
 }
 
 .home-minipost-board:hover {
@@ -93,5 +91,24 @@
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
+
+.mini-content p,
+.mini-boardInfo p {
+    height: 18px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mini-content p {
+    width: 100px;
+}
+
+.mini-boardInfo p {
+    width: 200px;
+}
+
 
 

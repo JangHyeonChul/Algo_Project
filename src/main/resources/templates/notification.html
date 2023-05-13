@@ -9,88 +9,87 @@
 
 <div class="breadcrumbs"></div>
 
+<div class="container">
 
-<div style="margin-top: 1rem;" class="container">
+
+  <h1 class="notifi_title" th:text="${notificationBoard.noti_title}">최신공지사항</h1>
+  <div class="board_container">
+    <div th:text="${notificationBoard.noti_title}" class="board_notifi_title">
+    </div>
+    <div th:utext="${notificationBoard.noti_content}" class="board_notifi_content">
+    </div>
+    <div class="board_notifi_push">
+    </div>
+
+    <div class="board_notifi_userInfo">
+      <p class="margin-right-1" th:text="'작성자 : ' + ${notificationBoard.user_id}">작성자</p>
+      <p class="margin-right-1" th:text="'작성일 : ' + ${notificationBoard.transNotiTime}">작성일</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div style="margin-top: 1rem;" class="container" >
   <div class="body-qeustion-table">
     <table class="table table-border">
       <thead>
       <tr>
         <th style="width: 10%;">글번호</th>
-        <th style="width: 40%;">제목</th>
-        <th style="width: 5%;">댓글</th>
-        <th style="width: 20%;">추천수</th>
-        <th style="width: 10%;">작성일</th>
+        <th style="width: 60%;">제목</th>
+        <th style="width: 15%;">작성일</th>
         <th style="width: 15%;">작성자</th>
       </tr>
       </thead>
-      <tbody>
+
+      <tbody th:each="notification : ${notification}">
       <tr>
-      <td>1</td>
-      <td>긴급공지입니다</td>
-      <td>1</td>
-      <td>3</td>
-      <td>1일전</td>
-      <td>wkdgus1136</td>
+      <td th:text="${notification.noti_no}">1</td>
+
+        <td>
+      <a th:text="${notification.noti_title}"
+         th:href="@{/notification/{pageNum}(pageNum = ${notification.noti_no}, page = ${page})}">
+      </a>
+        </td>
+      <td th:text="${notification.transNotiTime}">1일전</td>
+      <td th:text="${notification.user_id}">wkdgus1136</td>
       </tr>
       </tbody>
 
-      <tbody>
-      <tr>
-      <td>2</td>
-      <td>긴급공지아라라라라랄입니다</td>
-      <td>1</td>
-      <td>3</td>
-      <td>1일전</td>
-      <td>wkdgus1136</td>
-      </tr>
-      </tbody>
     </table>
 
   </div>
 
-  <h1 class="notifi_title">최신공지사항</h1>
-  <div class="board_container">
-    <div class="board_notifi_title">
-      긴급공지입니다
-    </div>
-    <div class="board_notifi_content">
-      안녕하세요.
-      <br>
-      <br>
-      <br>
-      node.js 제출이 /dev/stdin을 사용할 경우 런타임 에러가 발생하는 문제가 있습니다.
-      <br>
-      <br>
-      <br>
-      readline을 사용하는 것을 권장하며, /dev/stdin의 런타임 에러와 관련된 문제가 해결되면 다시 글이나 댓글 올리겠습니다.
-    </div>
-    <div class="board_notifi_push">
-      <div class="notifi_push_container">
-        <i style="font-size: 1.5rem;" class="fas fa-thumbs-up"></i>
-      </div>
-    </div>
 
-    <div class="board_notifi_userInfo">
-      <p class="margin-right-1">작성자 : wkdgus1136</p>
-      <p class="margin-right-1">추천수 : 1</p>
-      <p class="margin-right-1">작성일 : 1일전</p>
+  <div class="noti-nav-search">
+    <div class="noti-search-form">
+      <input style="margin-right: 0.4rem;" type="text" name="notikeyword" id="notikeyword" />
+      <button onclick="notiSearchBtn()"><i class="fas fa-search"></i></button>
     </div>
+  </div>
+</div>
 
+<div class="problem-page-nav">
+
+  <div  th:if="${ph.isShowPrev()}">
+    <a class="problem-page-nav-box" th:href="@{/notification/{page}(page = ${ph.page - 1})}">
+      <i class="fas fa-chevron-left"></i></a>
+  </div>
+
+  <div th:each="i : ${#numbers.sequence(ph.beginPage, ph.endPage)}">
+    <a class="problem-page-nav-box"
+       th:text="${i}"
+       th:href="@{'?page=' + ${i}}" th:classappend="${ph.page == i} ? 'color-red' : ''"></a>
 
   </div>
-  <div class="board_notifi_comment">
-    <div class="board_notifi_title">
-      작성자 : wkdgus1136
-    </div>
-    <div class="board_notifi_content">
-      안녕하세요.
-      <br>
-      <br>
-      집에가보겠습니다
-    </div>
+
+  <div th:if="${ph.isShowNext()}">
+    <a class="problem-page-nav-box" th:href="@{/notification/{page}(page = ${ph.page + 1})}">
+      <i class="fas fa-chevron-right"></i></a>
   </div>
 
 </div>
+
 
 
 <div th:replace="/fragments/footer"></div>

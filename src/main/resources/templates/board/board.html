@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs"></div>
+<div class="container body-nav">
+  <div class="container-body-nav">
+    <ul class="body-nav-ul">
+      <a th:href="@{/board}">
+        <li th:style="${category == null ? 'background-color: #428bca; color: white;' : ''}" class="body-nav-li">전체게시판</li>
+      </a>
+      <a th:href="@{/board/type/{category}(category = 'QU')}">
+        <li th:style="${category == 'QU' ? 'background-color: #428bca; color: white;' : ''}" class="body-nav-li">질문게시판</li></a>
+      <a th:href="@{/board/type/{category}(category = 'FR')}">
+        <li th:style="${category == 'FR' ? 'background-color: #428bca; color: white;' : ''}"class="body-nav-li">자유게시판</li></a>
+      <a th:href="@{/board/type/{category}(category = 'TE')}">
+        <li th:style="${category == 'TE' ? 'background-color: #428bca; color: white;' : ''}"class="body-nav-li">강의게시판</li></a>
+      <a th:href="@{/board/write}"><li style="color:red;" class="body-nav-li">글쓰기</li></a>
+    </ul>
+  </div>
+
+  <div class="body-nav-search">
+    <div class="body-search-form">
+
+      <input id="boardKeyword"style="margin-right: 0.4rem;" type="text" />
+      <button onclick="boardSearchBtn()"><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="body-qeustion-table">
+    <table class="table table-border">
+      <thead>
+      <tr>
+        <th style="width: 10%;">문제번호</th>
+        <th style="width: 45%;">제목</th>
+        <th style="width: 15%;">작성자</th>
+        <th style="width: 5%;">조회수</th>
+        <th style="width: 5%;">댓글</th>
+        <th style="width: 5%;">추천수</th>
+        <th style="width: 15%;">작성일</th>
+      </tr>
+      </thead>
+
+      <div th:each="board :${boards}">
+
+      <tbody>
+        <tr>
+      <td th:text="*{board.b_no}">1000번</td>
+      <td>
+        <div>
+          <a class="board-tag qu" th:if="${board.b_category.equals('QU')}" th:href="@{/board/type/{category}(category = 'QU')}">[질문]</a>
+          <a class="board-tag fr" th:if="${board.b_category.equals('FR')}" th:href="@{/board/type/{category}(category = 'FR')}">[자유]</a>
+          <a class="board-tag te" th:if="${board.b_category.equals('TE')}" th:href="@{/board/type/{category}(category = 'TE')}">[강의]</a>
+        <a th:text="*{board.b_title}" th:href="@{/board/page/{pageNum}(pageNum = *{board.b_no}, page= ${page})}"></a>
+        </div>
+      </td>
+      <td th:text="*{board.user_id}">wkdgus1136</td>
+      <td th:text="*{board.b_viewcnt}">1</td>
+      <td th:text="*{board.b_comment_cnt}">0</td>
+      <td th:text="*{board.b_recommdation}">0</td>
+      <td th:text="*{board.b_transCreate}">1일전</td>
+      </tr>
+      </tbody>
+      </div>
+    </table>
+  </div>
+</div>
+
+<div class="problem-page-nav">
+
+  <div  th:if="${ph.isShowPrev()}">
+    <a class="problem-page-nav-box" th:href="@{/board(page = ${ph.page - 1})}">
+      <i class="fas fa-chevron-left"></i></a>
+  </div>
+
+  <div th:each="i : ${#numbers.sequence(ph.beginPage, ph.endPage)}">
+    <a class="problem-page-nav-box"
+       th:text="${i}"
+       th:href="@{'?page=' + ${i}}" th:classappend="${ph.page == i} ? 'color-red' : ''"></a>
+
+  </div>
+
+  <div th:if="${ph.isShowNext()}">
+    <a class="problem-page-nav-box" th:href="@{/board(page = ${ph.page + 1})}">
+      <i class="fas fa-chevron-right"></i></a>
+  </div>
+
+</div>
+
+<div th:replace="/fragments/footer"></div>
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

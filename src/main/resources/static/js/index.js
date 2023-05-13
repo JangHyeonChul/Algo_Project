@@ -38,6 +38,7 @@ function copyToClipboard() {
 }
 
 
+
 function hintModalOpen() {
     var hintBtn = document.querySelector('.modal-schema');
 
@@ -51,6 +52,20 @@ function hintModalClose() {
     hintBtn.classList.remove('active');
 
 }
+
+function handleOnInput(e)  {
+    e.value = e.value.replace(/[^A-Za-z]/ig, '')
+}
+
+$('#problemOption_sort1').ready(function () {
+    $('#problemOption_sort1').prop("checked", true);
+    $('#problemOption_order1').prop("checked", true);
+    $('#problemOption_category1').prop("checked", true);
+    $('#problemOption_level1').prop("checked", true);
+    $('#problemOption_lang1').prop("checked", true);
+    $('#problemOption_etc1').prop("checked", true);
+})
+
 
 
 

@@ -4,18 +4,40 @@
 
 <body>
 
-<div th:replace="/fragments/modal-hint"></div>
+<div class="modal-schema">
+  <div class="modal-container">
+
+    <div class="modal-hint-container">
+      <div class="modal-hint-titleInfo margin-bottom-20 border-bottom">
+        <h1 th:text="${problem.p_title}">제목</h1>
+        <h2 th:text="${problem.p_no} + '번'">문제번호</h2>
+      </div>
+
+      <div class="modal-hint-content margin-bottom-20 border-bottom">
+        <p th:text="${problem.p_hint}">힌트내용</p>
+
+      </div>
+
+
+      <div class="modal-hint-exit margin-bottom-20">
+        <a onclick="hintModalClose()"><i class="fas fa-times"></i></a>
+      </div>
+
+    </div>
+  </div>
+</div>
 <div th:replace="/fragments/nav"></div>
+
 
 
 <div class="breadcrumbs"></div>
 <div class="container body-nav">
   <div class="container-body-nav">
     <ul class="body-nav-ul">
-      <li class="body-nav-li" style="background-color: #428bca; color: white;">문제</li>
-      <li class="body-nav-li">목록</li>
-      <li class="body-nav-li">제출내역</li>
-      <li style="color: red;" class="body-nav-li">도전하기</li>
+      <a th:href="@{/problem/{p_no}(p_no=${pageNum}, page=${page})}"><li style="background-color: #428bca; color: white;"class="body-nav-li" >문제</li></a>
+      <a th:href="@{/problem(page=${page})}"><li class="body-nav-li">목록</li></a>
+      <a th:href="@{/history/{p_no}(p_no=${pageNum}, page=${page})}"><li  class="body-nav-li">제출내역</li></a>
+      <a th:href="@{/challenge/{p_no}(p_no=${pageNum}, page=${page})}"><li style="color: red;" class="body-nav-li">도전하기</li></a>
 
     </ul>
 
@@ -25,7 +47,7 @@
 
 <div class="container board-content-body">
 
-  <div class="board-content-title"><h1>A+B</h1></div>
+  <div class="board-content-title"><h1 th:text="${problem.p_title}">A+B</h1></div>
 
   <table class="table board-content-table">
 
@@ -40,11 +62,15 @@
     </thead>
     <tbody class="board-content-tbody">
       <tr>
-        <td>1000</td>
-        <td>wkdgus1136</td>
-        <td>하</td>
-        <td>문자열</td>
-        <td>성공</td>
+        <td th:text="${problem.p_no}">1000</td>
+        <td th:text="${problem.user_id}">wkdgus1136</td>
+        <td th:text="${problem.p_level}">하</td>
+        <td th:text="${problem.p_type}">문자열</td>
+        <td th:each="solvenum : ${solvenums}"
+            th:if="${problem.p_no == solvenum.p_no}">
+          <div class="success-message"
+               style="background-color: #ffe800">성공</div>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -53,20 +79,19 @@
 
   <div class="board-content-text">
     <div class="headline"><h1>상세설명</h1></div>
-    <p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.<br>
-      정수형 변수 A와 B가 주어지며, 각각 변수의 리터럴값을 받아 A+B를 출력한다
-    </p>
+    <div th:utext="${problem.p_content}">알고리즘 내용
+    </div>
 
   </div>
 
   <div class="board-content-text">
     <div class="headline"><h1>입력값</h1></div>
-    <p>정수형 변수 A와 B가 주어진다</p>
+    <p th:text="${problem.p_input}"></p>
   </div>
 
   <div class="board-content-text">
     <div class="headline"><h1>출력값</h1></div>
-    <p>A+B의 값을 출력한다</p>
+    <p th:text="${problem.p_output}"></p>
   </div>
 
   <div class="board-content-example">
@@ -76,22 +101,23 @@
         <button onclick="copyToClipboard()" class="btn-none">복사</button>
       </div>
 
-      <div style="width: 90%;" class="board-content-example-input" id="copy-text">
-        1 2
+      <div th:text="${problemAnswer.get(0).answer_input}"style="width: 90%;" class="board-content-example-input" id="copy-text">
+        input
       </div>
     </div>
 
     <div class="board-content-text">
       <div class="headline" style="width: 90%;"><h1>예제 출력</h1></div>
-      <div style="width: 90%;" class="board-content-example-result">
-        3
+      <div th:text="${problemAnswer.get(0).answer_output}"style="width: 90%;" class="board-content-example-result">
+        output
       </div>
     </div>
   </div>
 
   <div class="board-content-text">
     <div class="headline"><h1>힌트</h1></div>
-    <p><a style="cursor: pointer;" onclick="hintModalOpen()" class="board-content-hint">여기</a>를 누르면 1000번의 문제의 힌트를 볼수있습니다</p>
+    <p><a style="cursor: pointer;" onclick="hintModalOpen()" class="board-content-hint">여기</a>
+      를 누르면 해당문제의 힌트를 볼수있습니다</p>
   </div>
 
 </div>

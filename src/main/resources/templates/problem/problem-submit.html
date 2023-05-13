@@ -12,10 +12,10 @@
 <div class="container body-nav">
   <div class="container-body-nav">
     <ul class="body-nav-ul">
-      <li class="body-nav-li">문제</li>
-      <li class="body-nav-li">목록</li>
-      <li class="body-nav-li">제출내역</li>
-      <li style="background-color: #428bca; color: white;" class="body-nav-li">도전하기</li>
+      <a th:href="@{/problem/{p_no}(p_no=${pageNum}, page=${page})}"><li class="body-nav-li" >문제</li></a>
+      <a th:href="@{/problem(page=${page})}"><li class="body-nav-li">목록</li></a>
+      <a th:href="@{/history/{p_no}(p_no=${pageNum}, page=${page})}"><li class="body-nav-li">제출내역</li></a>
+      <a th:href="@{/challenge/{p_no}(p_no=${pageNum}, page=${page})}"><li style="color: red; font-weight: bold;" class="body-nav-li">도전하기</li></a>
 
     </ul>
 
@@ -25,16 +25,16 @@
 
 
 <div class="container submit-container">
-  <form>
+  <form th:action="@{/challenge/{pageNum}(pageNum=${pageNum})}" method="post">
     <div class="submit-header">
       <div class="submit-lang">
         언어
       </div>
 
-      <select>
-        <option>JAVA</option>
-        <option>C</option>
-        <option>PYTHON</option>
+      <select name="language">
+        <option value="JAVA">JAVA</option>
+        <option value="C">C</option>
+        <option value="PYTHON">PYTHON</option>
       </select>
     </div>
 
@@ -44,9 +44,9 @@
       </div>
 
       <div class="submit-langtemp">
-        <div><a>JAVA</a></div>
-        <div><a>C</a></div>
-        <div><a>PYTHON</a></div>
+        <div><a class="select-Java">JAVA</a></div>
+        <div><a class="select-C">C</a></div>
+        <div><a class="select-Python">PYTHON</a></div>
       </div>
     </div>
 
@@ -58,11 +58,17 @@
       </div>
 
       <div class="submit-mirror-container">
-        <div class="submit-mirror"></div>
-        <textarea class="submit-textarea" style="resize: none;"></textarea>
+        <div id="editor" ></div>
+        <input id="codeInput"name="code" type="hidden" value=""/>
       </div>
 
     </div>
+
+    <div class="problem-submit-btn">
+      <button th:onclick="submitCode()">제출하기</button>
+    </div>
+
+
 
   </form>
 </div>
@@ -71,20 +77,18 @@
 
   <div class="board-content-text">
     <div class="headline"><h1>상세설명</h1></div>
-    <p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.<br>
-      정수형 변수 A와 B가 주어지며, 각각 변수의 리터럴값을 받아 A+B를 출력한다
-    </p>
+    <p th:text="${problem.p_content}">설명</p>
 
   </div>
 
   <div class="board-content-text">
     <div class="headline"><h1>입력값</h1></div>
-    <p>정수형 변수 A와 B가 주어진다</p>
+    <p th:text="${problem.p_input}">입력값</p>
   </div>
 
   <div class="board-content-text">
     <div class="headline"><h1>출력값</h1></div>
-    <p>A+B의 값을 출력한다</p>
+    <p th:text="${problem.p_output}">A+B의 값을 출력한다</p>
   </div>
 
   <div class="board-content-example">
@@ -94,14 +98,14 @@
         <button onclick="copyToClipboard()" class="btn-none">복사</button>
       </div>
 
-      <div style="width: 90%;" class="board-content-example-input" id="copy-text">
+      <div th:text="${problemAnswer.get(0).answer_input}" style="width: 90%;" class="board-content-example-input" id="copy-text">
         1 2
       </div>
     </div>
 
     <div class="board-content-text">
       <div class="headline" style="width: 90%;"><h1>예제 출력</h1></div>
-      <div style="width: 90%;" class="board-content-example-result">
+      <div th:text="${problemAnswer.get(0).answer_output}" style="width: 90%;" class="board-content-example-result">
         3
       </div>
     </div>

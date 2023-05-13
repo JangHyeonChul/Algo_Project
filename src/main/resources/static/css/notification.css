@@ -23,7 +23,6 @@
 .board_notifi_content {
     padding: 1rem 0.8rem;
     font-size: 0.9rem;
-    margin-bottom: 4rem;
     color: #555;
 }
 
@@ -54,7 +53,9 @@
     border: 1px solid #ddd;;
 }
 
-.board_notifi_userInfo {
+.noti-nav-search {
+    display: flex;
+    justify-content: center;
 
 }
 

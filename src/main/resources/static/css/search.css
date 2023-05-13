@@ -62,8 +62,13 @@
 }
 
 .search-result-content {
+    display: block;
     padding: 2rem 0;
     line-height: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
     border-bottom: 1px solid var(--border-color);
 }
 

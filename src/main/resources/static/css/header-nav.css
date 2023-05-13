@@ -40,10 +40,11 @@
 }
 
 .dropMenu-mega-content,
-.container-menubar,
-.login-bar-right {
+.container-menubar {
     display: flex;
 }
+
+
 
 .login-bar-right li a {
     color: var(--font-color-gray-01);
@@ -147,5 +148,7 @@
     font-size: 1rem;
     margin-bottom: 1.3rem;
 }
+
+
 
 

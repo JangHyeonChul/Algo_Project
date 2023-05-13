@@ -14,11 +14,6 @@
   <div class="container-body-nav">
     <ul class="body-nav-ul">
       <li class="body-nav-li" style="background-color: #428bca; color: white;">유저</li>
-      <li class="body-nav-li">일</li>
-      <li class="body-nav-li">주</li>
-      <li class="body-nav-li">달</li>
-      <li class="body-nav-li">년</li>
-
     </ul>
   </div>
 
@@ -30,7 +25,50 @@
 
 
 <div style="margin-top: 1rem;" class="container">
+
+  <div class="body-qeustion-table" th:if="${#authorization.expression('isAuthenticated()')}">
+    <h1 class="rank_h1">나의 현재 랭킹</h1>
+  <table class="table table-border">
+    <thead>
+    <tr>
+      <th style="width: 10%;">등수</th>
+      <th style="width: 20%;">아이디</th>
+      <th style="width: 40%;">상태 메시지</th>
+      <th style="width: 10%;">맞힌 문제</th>
+      <th style="width: 20%;">포인트</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td th:switch="*{userRankInfo}">
+        <div style="color:red;" class="rank_top" th:case="1" >
+          <i class="fas fa-medal"></i><h1 th:text="*{userRankInfo.user_rank}"></h1>등
+        </div>
+
+        <div style="color:blue;" class="rank_top" th:case="2">
+          <i class="fas fa-medal"></i><h1 th:text="*{userRankInfo.user_rank}"></h1>등
+        </div>
+
+        <div style="color:#62ff00;" class="rank_top" th:case="3">
+          <i class="fas fa-medal"></i><h1 th:text="*{userRankInfo.user_rank}"></h1>등
+        </div>
+
+        <div class="rank_top" th:case="*">
+          <h1 th:text="*{userRankInfo.user_rank}"></h1>등
+        </div>
+      </td>
+      <td th:text="*{userRankInfo.username}">아이디</td>
+      <td th:text="*{userRankInfo.message}">안녕하세요</td>
+      <td th:text="*{userRankInfo.problem_count}">맞힌문제</td>
+      <td th:text="*{userRankInfo.point}">포인트</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+
+
   <div class="body-qeustion-table">
+    <h1 class="rank_h1">전체 랭킹(1~50등)</h1>
     <table class="table table-border">
       <thead>
       <tr>
@@ -41,17 +79,33 @@
         <th style="width: 20%;">포인트</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody th:each="rankInfo : ${rankInfos}">
       <tr>
-      <td>1</td>
-      <td>wkdgus1136</td>
-      <td>안녕하세요</td>
-      <td>3</td>
-      <td>300</td>
+        <td th:switch="*{rankInfo.user_rank}">
+          <div style="color:red;" class="rank_top" th:case="1" >
+            <i class="fas fa-medal"></i><h1 th:text="*{rankInfo.user_rank}"></h1>등
+          </div>
+
+          <div style="color:blue;" class="rank_top" th:case="2">
+            <i class="fas fa-medal"></i><h1 th:text="*{rankInfo.user_rank}"></h1>등
+          </div>
+
+          <div style="color:#62ff00;" class="rank_top" th:case="3">
+            <i class="fas fa-medal"></i><h1 th:text="*{rankInfo.user_rank}"></h1>등
+          </div>
+
+          <div class="rank_top" th:case="*">
+              <h1 th:text="*{rankInfo.user_rank}"></h1>등
+          </div>
+
+
+        </td>
+        <td th:text="*{rankInfo.username}">아이디</td>
+        <td th:text="*{rankInfo.message}">안녕하세요</td>
+        <td th:text="*{rankInfo.problem_count}">맞힌문제</td>
+        <td th:text="*{rankInfo.point}">포인트</td>
       </tr>
       </tbody>
-
-
     </table>
 
   </div>

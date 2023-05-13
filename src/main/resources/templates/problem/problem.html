@@ -9,62 +9,50 @@
 <div class="container body-nav">
   <div class="container-body-nav">
     <ul class="body-nav-ul">
-      <li class="body-nav-li" style="background-color: #428bca; color: white;">전체</li>
-      <li class="body-nav-li">랜덤</li>
-      <li class="body-nav-li">분류</li>
-      <li class="body-nav-li">최신 문제</li>
+      <a th:href="@{/problem}"><li class="body-nav-li" style="background-color: #428bca; color: white;">전체</li></a>
+      <a th:href="@{/problem/type}"><li class="body-nav-li">종류별문제</li></a>
+      <a th:href="@{/random(page = ${ph.page})}"><li class="body-nav-li">랜덤</li></a>
+
 
     </ul>
     <a style="cursor: pointer;" class="option-btn">옵션 <i class="fas fa-chevron-down"></i></a>
   </div>
 
   <div class="body-nav-search">
-    <form class="body-search-form">
-      <input style="margin-right: 0.4rem;" type="text" />
-      <button><i class="fas fa-search"></i></button>
-    </form>
+    <div class="body-search-form">
+      <input style="margin-right: 0.4rem;" type="text" name="keyword" id="keyword" />
+      <button onclick="problemSearchBtn()"><i class="fas fa-search"></i></button>
+    </div>
   </div>
 
 </div>
 
 <div class="body-option container optionActive">
 
-  <form>
+  <form th:object="${problemOptionDTO}" th:action="@{/problem}" method="get">
+
     <div class="option-sort-container">
 
       <section class="option-sort-section">
         <div class="sort-no-title margin-bottom-20">
-          <label>문제 정렬</label>
+          <label style="color: red;">옵션기능사용</label>
         </div>
 
-        <div class="sort-no-radio-container">
+        <div>
+
           <label class="radio">
-            <input type="radio" name="sort-no" checked/>
-            문제번호
+            <input type="radio"  name="use" value="unused"/>
+            사용안함
           </label>
 
           <label class="radio">
-            <input type="radio" name="sort-no"/>
-            랜덤문제
-          </label>
-
-          <label class="radio">
-            <input type="radio" name="sort-no"/>
-            문제순위
-          </label>
-
-          <label class="radio">
-            <input type="radio" name="sort-no"/>
-            맞은사람
-          </label>
-          <br>
-          <label class="radio">
-            <input type="radio" name="sort-no"/>
-            내가안푼문제
+            <input type="radio"  name="use" value="used" checked/>
+            사용
           </label>
         </div>
 
       </section>
+
 
       <fieldset class="option-sort-fieldset">
         <div class="sort-ar-title margin-bottom-20">
@@ -73,19 +61,32 @@
 
         <div class="sort-ar-radio-container">
           <label class="radio">
-            <input type="radio" name="sort-ar" checked/>
+            <input type="radio"  name="order" value="asc" checked/>
             오름차순
           </label>
 
           <label class="radio">
-            <input type="radio" name="sort-ar"/>
+            <input type="radio"  name="order" value="desc"/>
             내림차순
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="order" value="random"/>
+            랜덤문제
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="order" value="level"/>
+            문제순위
           </label>
 
         </div>
 
       </fieldset>
+
     </div>
+
+
 
     <div class="option-algo-section">
       <fieldset class="option-sort-fieldset">
@@ -95,28 +96,23 @@
 
         <div class="sort-ar-radio-container">
           <label class="radio">
-            <input type="radio" name="sort-al" checked/>
-            사용 안함
+            <input type="radio"  name="type" value="total" checked />
+            전체
           </label>
 
           <label class="radio">
-            <input type="radio" name="sort-al"/>
+            <input type="radio"  name="type" value="sort" />
             정렬
           </label>
 
           <label class="radio">
-            <input type="radio" name="sort-al"/>
-            자료 구조
+            <input type="radio"  name="type" value="arki" />
+            사칙 연산
           </label>
 
           <label class="radio">
-            <input type="radio" name="sort-al"/>
+            <input type="radio"  name="type" value="string"/>
             문자열
-          </label>
-
-          <label class="radio">
-            <input type="radio" name="sort-al"/>
-            탐색
           </label>
 
         </div>
@@ -131,28 +127,23 @@
 
           <div class="sort-ti-radio-container">
             <label class="radio">
-              <input type="radio" name="sort-ti" checked/>
+              <input type="radio"  name="level" value="total" checked/>
               전체
             </label>
 
             <label class="radio">
-              <input type="radio" name="sort-ti"/>
+              <input type="radio"  name="level" value="하" />
               하
             </label>
 
             <label class="radio">
-              <input type="radio" name="sort-ti"/>
+              <input type="radio" name="level" value="중" />
               중
             </label>
 
             <label class="radio">
-              <input type="radio" name="sort-ti"/>
+              <input type="radio" name="level" value="상"/>
               상
-            </label>
-
-            <label class="radio">
-              <input type="radio" name="sort-ti"/>
-              최상
             </label>
 
           </div>
@@ -168,13 +159,19 @@
           </div>
 
           <div class="sort-no-radio-container">
+
             <label class="radio">
-              <input type="radio" name="sort-lang" checked/>
+              <input type="radio" name="lang" value="total" checked />
+              전체
+            </label>
+
+            <label class="radio">
+              <input type="radio" name="lang" value="KR"/>
               한국어
             </label>
 
             <label class="radio">
-              <input type="radio" name="sort-lang"/>
+              <input type="radio"  name="lang" value="ENG"/>
               영어
             </label>
           </div>
@@ -188,19 +185,20 @@
 
           <div class="sort-ar-radio-container">
             <label class="radio">
-              <input type="radio" name="sort-etc" checked/>
-              사용 안함
+              <input type="radio" name="etc" value="total" checked/>
+              전체
             </label>
 
             <label class="radio">
-              <input type="radio" name="sort-etc"/>
+              <input type="radio" name="etc" value="zero"/>
               아무도 못푼 문제
             </label>
 
             <label class="radio">
-              <input type="radio" name="sort-etc"/>
+              <input type="radio"  name="etc" value="one"/>
               한명만 푼 문제
             </label>
+
 
           </div>
 
@@ -211,7 +209,6 @@
       <div class="option-btn-section">
         <fieldset class="option-btn-fieldset">
           <button class="option-apply">적용</button>
-          <button class="option-reset">초기화</button>
         </fieldset>
 
       </div>
@@ -225,62 +222,76 @@
     <table class="table table-border">
       <thead>
       <tr>
-        <th style="width: 10%;">문제</th>
-        <th style="width: 40%;">문제 제목</th>
+        <th style="width: 10%;">문제번호</th>
+        <th style="width: 45%;">문제제목</th>
         <th style="width: 10%;">난이도</th>
         <th style="width: 10%;">맞힌 인원</th>
-        <th style="width: 20%;">종류</th>
-        <th style="width: 10%;">정보</th>
+        <th style="width: 10%;">종류</th>
+        <th style="width: 15%;">정보</th>
       </tr>
       </thead>
+      <div th:each="problem : ${problems}">
       <tbody>
         <tr>
-          <td>1000</td>
-          <td>A+B</td>
-          <td>하</td>
-          <td>3</td>
-          <td>문자열</td>
-          <td>KR</td>
+          <td th:text="${problem.getP_no()}">문제번호</td>
+          <td><a th:text="${problem.p_title}" th:href="@{problem/{p_no}(p_no=${problem.p_no}, page=${ph.page})}"></a></td>
+          <td>
+            <div th:if="${problem.p_level == '하'}"
+                 class="level-message"
+                 style="background-color: #7070ff">하</div>
+
+            <div th:if="${problem.p_level == '중'}"
+                 class="level-message"
+                 style="background-color: #00ff99">중</div>
+            <div th:if="${problem.p_level == '상'}"
+                 class="level-message"
+                 style="background-color: #ff4646">상</div>
+          </td>
+          <td th:text="${problem.num_correct}">맞힌인원</td>
+          <td th:text="${problem.getP_type()}">문제종류</td>
+
+
+          <td th:each="solvenum : ${solvenums}"
+              th:if="${problem.p_no == solvenum.p_no}">
+            <div class="success-message"
+                 style="background-color: #ffe800">성공</div>
+          </td>
+
         </tr>
       </tbody>
-
-      <tbody>
-        <tr>
-          <td>1000</td>
-          <td>A+B</td>
-          <td>하</td>
-          <td>3</td>
-        <td>문자열</td>
-          <td>KR</td>
-       </tr>
-      </tbody>
-
-      <tbody>
-        <tr>
-          <td>1000</td>
-          <td>A+B</td>
-          <td>하</td>
-          <td>3</td>
-          <td>문자열</td>
-          <td>KR</td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr>
-          <td>1000</td>
-          <td>A+B</td>
-          <td>하</td>
-          <td>3</td>
-          <td>문자열</td>
-          <td>성공</td>
-        </tr>
-      </tbody>
-
+      </div>
     </table>
+  </div>
+  <div class="problem-page-nav">
+
+    <div  th:if="${ph.isShowPrev()}">
+      <a class="problem-page-nav-box" th:href="@{/problem(page = ${ph.page - 1})}">
+        <i class="fas fa-chevron-left"></i></a>
+    </div>
+
+    <div th:if="${option.use} == 'unused'" th:each="i : ${#numbers.sequence(ph.beginPage, ph.endPage)}">
+        <a class="problem-page-nav-box"
+           th:text="${i}"
+           th:href="@{/problem(page = ${i})}" th:classappend="${ph.page == i} ? 'color-red' : ''"></a>
+    </div>
+
+    <div th:if="${option.use == 'used'}" th:each="i : ${#numbers.sequence(ph.beginPage, ph.endPage)}">
+      <a class="problem-page-nav-box"
+         th:text="${i}"
+         th:href="@{/problem(use= ${option.use}, order= ${option.order}, type=${option.category},
+         level=${option.level}, lang=${option.lang}, etc=${option.etc}, page = ${i})}"
+         th:classappend="${ph.page == i} ? 'color-red' : ''"></a>
+    </div>
+
+    <div th:if="${ph.isShowNext()}">
+      <a class="problem-page-nav-box" th:href="@{/problem(page = ${ph.page + 1})}">
+        <i class="fas fa-chevron-right"></i></a>
+    </div>
 
   </div>
-
 </div>
+
+
 
 
 

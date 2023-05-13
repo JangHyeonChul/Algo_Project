@@ -8,6 +8,7 @@
     height: 100%;
     margin: 2.5rem 0;
     display: flex;
+    align-items: center;
     font-size: 0.9rem;
     font-weight: bold;
     position: relative;
@@ -15,14 +16,25 @@
 
 }
 
+
 .submit-header select {
     width: 15rem;
     padding: 0.4rem 0.5rem;
+    border: 1px solid var(--border-color-C4);
+    color: var(--font-color-gray-01);
+    border-radius: 0.7rem;
+
 }
 
 
+
+
+
+
 .submit-langtemp div {
-    margin-bottom: 1rem;
+    margin: 1rem 0;
+    color: var(--font-color-gray-03);
+
 }
 
 
@@ -46,21 +58,28 @@
     display: flex;
 }
 
-.submit-mirror-container textarea {
-    padding: 0 1rem;
-    font-size: 0.9rem;
-    width: 70%;
+#editor {
+    font-size: 1rem;
+    width: 80%;
+    height: 400px;
     color: var(--font-color-gray-03);
+}
+
+.submit-mirror-container  {
+    width: 70%;
 
 }
 
-.submit-mirror {
-    height: 300px;
-    width: 29px;
-    background-color: #f8f8f8;
-    border-right: 1px solid var(--border-color-C4);
+
+.problem-submit-btn {
+    text-align: center;
 }
 
-.
+.problem-submit-btn button {
+    background-color: var(--font-color-blue);
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
 }
+
 

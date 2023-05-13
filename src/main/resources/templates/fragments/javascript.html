@@ -1,1 +1,15 @@
 <script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/code-mirror.js}"></script>
+<script th:src="@{/js/comment.js}"></script>
+<script th:src="@{/js/recommdation.js}"></script>
+<script th:src="@{/js/mypage.js}"></script>
+<script th:src="@{/js/search.js}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+<script>
+    ClassicEditor.create( document.querySelector( '#boardeditor' ), {
+        language: "ko",
+        removePlugins: [ 'MediaEmbed', 'Bold', 'Italic']
+    } );
+
+</script>

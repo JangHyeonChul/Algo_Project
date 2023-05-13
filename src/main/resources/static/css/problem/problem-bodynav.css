@@ -1,12 +1,14 @@
 .body-nav,
 .container-body-nav,
 .body-nav-ul,
-.body-search-form {
+.body-search-form,
+.problem-page-nav {
     display: flex;
 }
 
 .body-nav {
-    padding: 2rem 0;
+    padding-bottom: 1rem;
+    padding-top: 2rem;
 }
 
 .container-body-nav {
@@ -16,8 +18,6 @@
     width: 100%;
 }
 
-
-
 .body-nav-li {
     font-size: 0.8rem;
     padding: 0.9rem;
@@ -25,7 +25,6 @@
 
 .container-body-nav a {
     font-size: 0.8rem;
-    margin-right: 1rem;
 }
 
 .body-search-form {
@@ -36,6 +35,38 @@
     padding: 0.4rem 1rem;
 
 }
+
+.problem-page-nav {
+    justify-content: center;
+    width: 100%;
+    margin: 4rem 0;
+    font-size: 1rem;
+}
+
+.problem-page-nav-box {
+    background-color: var(--border-color-FC);
+    margin-right: 1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    align-items: center;
+    transition: all ease 0.3s;
+}
+.problem-page-nav-box:hover {
+    background-color: var(--border-color);
+    transition: all ease 0.3s;
+}
+
+
+.success-message,
+.level-message {
+    border-radius: 0.5rem;
+    display: inline-block;
+    padding: 0 0.5rem;
+    color: white;
+}
+
+
+
 
 
 

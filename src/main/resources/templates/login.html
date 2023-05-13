@@ -12,7 +12,7 @@
 <div class="container content">
   <div class="row">
     <div class="register card">
-      <form>
+      <form th:object="${loginDTO}" th:action="@{/login}" method="post">
         <div class="register-card-text">
           <h2 style="font-size: 1.5rem;">로그인</h2><br>
         </div>
@@ -20,12 +20,14 @@
         <div class="register-submit">
 
           <div class="input-group">
-            <div class="input-group-addon margin-bottom-20"><i class="fas fa-user-alt"><input type="text" placeholder="아이디 / 이메일"/></i></div>
-            <div class="input-group-addon margin-bottom-20"><i class="fas fa-lock"><input type="text" placeholder="비밀번호" /></i></div>
+            <div class="input-group-addon margin-bottom-20"><i class="fas fa-user-alt">
+              <input th:field="*{username}" name="username" type="text" placeholder="아이디 / 이메일"/></i></div>
+            <div class="input-group-addon margin-bottom-20"><i class="fas fa-lock">
+              <input th:field="*{password}" type="password" placeholder="비밀번호" /></i></div>
           </div>
 
           <div class="register-remember-login">
-            <div class="remember" style="color: var(--font-color-gray-01);"><input type="checkbox" style="margin-right: 0.5rem;"/>로그인 상태 유지</div>
+            <div class="remember" style="color: var(--font-color-gray-01);"><input th:field="*{idsave}" type="checkbox" style="margin-right: 0.5rem;"/>로그인 상태 유지</div>
             <button class="loginbtn">로그인</button>
 
           </div>

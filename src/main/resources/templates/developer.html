@@ -7,6 +7,20 @@
 <div th:replace="/fragments/nav"></div>
 <div class="breadcrumbs"></div>
 
+<div class="container">
+
+    <div th:each="site : ${siteDTO}">
+
+
+    <div class="site-group">
+        <a th:href="${site.algo_link}" th:text="${site.algo_title}"></a>
+        <p th:text="${site.algo_content}"></p>
+    </div>
+
+
+    </div>
+</div>
+
 
 <div th:replace="/fragments/footer"></div>
 <div th:replace="/fragments/javascript"></div>

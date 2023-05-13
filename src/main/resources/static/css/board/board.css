@@ -1,0 +1,57 @@
+.body-qeustion-table {
+    color: var(--font-color-gray-01);
+    font-size: 0.95rem;
+}
+
+.table {
+    width: 100%;
+    display: table;
+}
+
+.table-border thead,
+.table-border tbody {
+    border: 1px solid var(--border-color-C4);
+    text-align: left;
+}
+
+.ck-editor__editable {
+    height: 400px;
+}
+
+.board-nav {
+    background-color: red;
+
+}
+
+.comment-textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    overflow: hidden;
+}
+
+.board-tag {
+    font-size: 0.8rem;
+}
+
+.board_notifi_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.board_container {
+    margin-bottom: 1rem;
+}
+
+.qu {
+    color: #3aff00;
+}
+
+.fr {
+color: #0067ff;
+}
+
+.te {
+    color: #ff0000;
+}
+
