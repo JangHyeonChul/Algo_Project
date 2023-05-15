@@ -154,7 +154,6 @@ public class ProblemServiceTest {
             }
         }
 
-        System.out.println("compileResultList = " + compileResultList);
     }
 
 

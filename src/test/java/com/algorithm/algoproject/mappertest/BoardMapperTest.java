@@ -29,28 +29,28 @@ public class BoardMapperTest {
         boardMapper.insertBoard(boardDTO);
     }
 
-    @Test
-    void selectAllBoards() {
-        List<BoardDTO> qu = boardMapper.selectAllBoards(0, "QU");
-
-        for(BoardDTO boardDTO : qu) {
-            Date boardDate = boardDTO.getB_create();
-            Time transtime = new Time();
+//    @Test
+//    void selectAllBoards() {
+//        List<BoardDTO> qu = boardMapper.selectAllBoards(0, "QU");
+//
+//        for(BoardDTO boardDTO : qu) {
+//            Date boardDate = boardDTO.getB_create();
+//            Time transtime = new Time();
 //            String time = transtime.txtDate(boardDate);
 //            System.out.println("time = " + time);
-            System.out.println("boardDTO = " + boardDTO);
-        }
-    }
+//            System.out.println("boardDTO = " + boardDTO);
+//        }
+//    }
 
-    @Test
-    void timeTest() {
-        List<CommentDTO> boardComments = boardCommentService.getBoardComments(29);
-        Time time1 = new Time();
-
-        for(CommentDTO commentDTO : boardComments) {
-            Date cCreate = commentDTO.getC_create();
+//    @Test
+//    void timeTest() {
+//        List<CommentDTO> boardComments = boardCommentService.getBoardComments(29);
+//        Time time1 = new Time();
+//
+//        for(CommentDTO commentDTO : boardComments) {
+//            Date cCreate = commentDTO.getC_create();
 //            String result = time1.txtDate(cCreate);
 //            System.out.println("result = " + result);
         }
-    }
-}
+
+
