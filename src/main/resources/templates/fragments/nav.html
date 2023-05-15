@@ -36,11 +36,11 @@
                 <div class="dropMenu-container">
                   <div class="dropMenu-subject">문제</div>
                   <ul>
-                    <li>전체 문제</li>
-                    <li>종류별 문제</li>
-                    <li>가장 많이풀린 문제</li>
-                    <li>가장 적게풀린 문제</li>
-                    <li>랜덤 문제</li>
+                    <a th:href="@{/problem}"><li>전체 문제</li></a>
+                    <a th:href="@{/problem/type}"><li>종류별 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='total', lang='total', etc='zero')}"><li>아무도 못푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='total', lang='total', etc='one')}"><li>한명만 푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='random', type='total', level='total', lang='total', etc='total')}"><li>랜덤 문제</li></a>
                   </ul>
                 </div>
               </div>
@@ -49,10 +49,10 @@
                 <div class="dropMenu-container">
                   <div class="dropMenu-subject">쉬운문제</div>
                   <ul>
-                    <li>전체 문제</li>
-                    <li>가장 많이풀린 문제</li>
-                    <li>가장 적게풀린 문제</li>
-                    <li>랜덤 문제</li>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='하', lang='total', etc='total')}"><li>전체 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='하', lang='total', etc='zero')}"><li>아무도 못푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='하', lang='total', etc='one')}"><li>한명만 푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='random', type='total', level='하', lang='total', etc='total')}"><li>랜덤 문제</li></a>
                   </ul>
 
                 </div>
@@ -62,10 +62,10 @@
                 <div class="dropMenu-container">
                   <div class="dropMenu-subject">중간문제</div>
                   <ul>
-                    <li>전체 문제</li>
-                    <li>가장 많이풀린 문제</li>
-                    <li>가장 적게풀린 문제</li>
-                    <li>랜덤 문제</li>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='중', lang='total', etc='total')}"><li>전체 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='중', lang='total', etc='zero')}"><li>아무도 못푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='중', lang='total', etc='one')}"><li>한명만 푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='random', type='total', level='중', lang='total', etc='total')}"><li>랜덤 문제</li></a>
                   </ul>
 
                 </div>
@@ -75,12 +75,11 @@
                 <div class="dropMenu-container">
                   <div class="dropMenu-subject">어려운문제</div>
                   <ul>
-                    <li>전체 문제</li>
-                    <li>가장 많이풀린 문제</li>
-                    <li>가장 적게풀린 문제</li>
-                    <li>랜덤 문제</li>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='상', lang='total', etc='total')}"><li>전체 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='상', lang='total', etc='zero')}"><li>아무도 못푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='asc', type='total', level='상', lang='total', etc='one')}"><li>한명만 푼 문제</li></a>
+                    <a th:href="@{/problem(use='used', order='random', type='total', level='상', lang='total', etc='total')}"><li>랜덤 문제</li></a>
                   </ul>
-
                 </div>
               </div>
 

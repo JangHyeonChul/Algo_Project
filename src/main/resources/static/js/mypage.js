@@ -165,8 +165,6 @@ function EmailSubmit() {
         url: '/mypage/email',
 
         success: function (data) {
-            console.log(data);
-
             var mypageBox = $('.mypage-info');
             var authCheck;
             var authText;

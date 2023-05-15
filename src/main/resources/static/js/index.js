@@ -74,6 +74,29 @@ function messagemove() {
 
 }
 
+function deleteproblem(pageNum) {
+    $.ajax({
+        type: 'post',
+        url: '/problem/delete',
+        dataType: 'text',
+        data: {"pageNum" : pageNum},
+        success: function (data) {
+            var mypageBox = $('.mypage-info');
+            mypageBox.empty();
+
+            mypageBox.append(
+                '<h1 class="mypage-title">알림</h1>'+
+
+                '<div class="alter-nav">'+
+                '<a class="AlramBtn" style="color:#0076C0; " onclick="AlertNotReadBtn()">안읽은 알림</a>'+
+                '<a class="AlramBtn" onclick="AlertReadBtn()" >읽은 알림</a>'+
+                '</div>'
+            )
+
+            writeAlramMessage('0', data, mypageBox);
+        }
+    })
+}
 
 
 

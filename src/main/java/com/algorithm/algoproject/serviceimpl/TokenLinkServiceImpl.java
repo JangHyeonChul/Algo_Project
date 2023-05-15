@@ -74,8 +74,8 @@ public class TokenLinkServiceImpl implements TokenLinkService {
 
         emailDataMap.put("email", userdata.getUser_email());
         emailDataMap.put("role", userdata.getUser_role());
-        emailDataMap.put("resetTime", tokenLink.getT_create_reset().toString());
-        emailDataMap.put("trial", Integer.toString(tokenLink.getT_trial()));
+//        emailDataMap.put("resetTime", tokenLink.getT_create_reset().toString());
+//        emailDataMap.put("trial", Integer.toString(tokenLink.getT_trial()));
 
         return emailDataMap;
     }

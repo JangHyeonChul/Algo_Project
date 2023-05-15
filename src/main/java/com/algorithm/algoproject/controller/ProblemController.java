@@ -152,6 +152,19 @@ public class ProblemController {
         return problemsTypeHandler(offset, allProblems, pageHandler, model);
     }
 
+    @PostMapping("/problem/delete")
+    @ResponseBody
+    public String deleteProblem(@RequestParam("pageNum") int pageNum) {
+
+        problemService.deleteProblem(pageNum);
+        System.out.println("pageNum = " + pageNum);
+
+        return null;
+    }
+
+
+
+
 
 
 

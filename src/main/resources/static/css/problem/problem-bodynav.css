@@ -66,6 +66,16 @@
 }
 
 
+.delete-board {
+    font-size: 0.8rem;
+    color: #ff7d7d;
+}
+
+.board-title {
+    display: flex;
+    justify-content: space-between;
+    cursor : pointer;
+}
 
 
 

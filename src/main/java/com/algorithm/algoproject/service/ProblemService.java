@@ -37,6 +37,8 @@ public interface ProblemService {
     int getLastInsertID();
     int getRandomPage(int maxNum);
 
+    void deleteProblem(int pageNum);
+
 
 
 

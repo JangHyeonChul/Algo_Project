@@ -40,5 +40,7 @@ public interface ProblemMapper {
     int countProblemsByOption(ProblemOptionDTO problemOptionDTO);
     Integer countProblemsBySearch(String keyword);
 
+    void deleteProblem(int pageNum);
+
 
 }

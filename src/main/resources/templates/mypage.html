@@ -19,7 +19,8 @@
             <a style="cursor: pointer;" onclick="UserInfoBtn()"><li>정보</li></a>
         </ul>
 
-        <th:block  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+
+        <th:block th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
         <h1>관리자메뉴</h1>
         <ul class="mypage-sidebox">
             <li>사이트 통계</li>

@@ -254,4 +254,9 @@
         WHERE user_id = #{username}
     </select>
 
+    <delete id="deleteProblem" parameterType="int">
+        DELETE FROM problem
+        WHERE p_no = #{pageNum}
+    </delete>
+
 </mapper>

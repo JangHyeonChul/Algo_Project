@@ -234,7 +234,9 @@
       <tbody>
         <tr>
           <td th:text="${problem.getP_no()}">문제번호</td>
-          <td><a th:text="${problem.p_title}" th:href="@{problem/{p_no}(p_no=${problem.p_no}, page=${ph.page})}"></a></td>
+          <td class="board-title">
+            <a th:text="${problem.p_title}" th:href="@{problem/{p_no}(p_no=${problem.p_no}, page=${ph.page})}"></a>
+          </td>
           <td>
             <div th:if="${problem.p_level == '하'}"
                  class="level-message"

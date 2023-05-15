@@ -164,5 +164,10 @@ public class ProblemServiceImpl implements ProblemService {
         return (int) (Math.random() * (maxNum - min + 1)) + min;
     }
 
+    @Override
+    public void deleteProblem(int pageNum) {
+        problemMapper.deleteProblem(pageNum);
+    }
+
 
 }
