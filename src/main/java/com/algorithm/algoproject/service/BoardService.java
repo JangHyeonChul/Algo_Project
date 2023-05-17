@@ -11,6 +11,8 @@ public interface BoardService {
 
     void writeBoard(BoardDTO boardDTO);
     void writeBoardViewCnt(int pageNum, HttpServletRequest request, HttpServletResponse response);
+    void deleteBoard(int boardNum);
+    void modifyBoard(int pageNum, BoardDTO boardDTO);
 
     int getCountAllBoard(String category);
     int getBoardOffset(int page, PageHandler pageHandler);

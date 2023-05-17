@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header-config"></head>
+
+<body>
+
+<div th:replace="/fragments/nav"></div>
+
+<div class="breadcrumbs"></div>
+<div class="container body-nav">
+  <div class="container-body-nav">
+  </div>
+</div>
+
+
+
+
+
+<div style="margin-top: 1rem;" class="container">
+  <div class="board-write-container">
+
+    <form th:action="@{/board/update/{pageNum}(pageNum= ${board.b_no})}" th:object="${board}" method="post">
+      <input type="hidden" name="_method" value="PATCH"/>
+    <div class="form-group">
+        <label>공지사항</label>
+      <div class="board-notice-list">
+        <p>글을 쓰기전에 <a style="color: var(--font-color-blue)" href="#">공지사항</a>을 먼저 확인해주세요</p>
+
+      </div>
+    </div>
+
+      <div class="form-group">
+        <label>제목</label>
+        <input type="text" th:field="*{b_title}" />
+      </div>
+
+      <div class="form-group">
+        <label>카테고리</label>
+        <select th:field="*{b_category}">
+          <option value="QU">질문</option>
+          <option value="FR">자유</option>
+          <option value="TE">강의</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>사용언어</label>
+        <select th:field="*{b_lang}">
+          <option value="JAVA">JAVA</option>
+          <option value="C">C</option>
+          <option value="PYTHON">파이썬</option>
+        </select>
+      </div>
+
+      <div class="comment-group">
+        <label>댓글사용여부</label>
+
+        <div class="commnet_active">
+          <label>사용</label>
+          <input type="radio" name="b_comment_active" checked/>
+          <label>미사용</label>
+          <input type="radio" name="b_comment_active" />
+        </div>
+      </div>
+
+      <div class="board-write-content">
+        <textarea th:field="*{b_content}" name="text" id="boardeditor"></textarea>
+      </div>
+
+      <div class="problem-submit-btn">
+        <button th:onclick="submitCode()">제출하기</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
+
+<div th:replace="/fragments/javascript"></div>
+</body>
+
+</html>

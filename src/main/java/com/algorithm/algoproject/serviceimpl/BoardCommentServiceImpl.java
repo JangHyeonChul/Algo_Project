@@ -32,7 +32,17 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 
     @Override
     public void updateBoardCommentCnt(int b_no) {
-        boardCommentMapper.updateBoardComment(b_no);
+        boardCommentMapper.updateBoardCommentCnt(b_no);
+    }
+
+    @Override
+    public void deleteBoardComment(int pageNum) {
+        boardCommentMapper.deleteBoardComment(pageNum);
+    }
+
+    @Override
+    public void updateBoardComment(int c_no, String content) {
+        boardCommentMapper.updateBoardComment(c_no, content);
     }
 
     @Override
@@ -48,6 +58,11 @@ public class BoardCommentServiceImpl implements BoardCommentService {
         return commentDTOS;
 
 
+    }
+
+    @Override
+    public CommentDTO getBoardComment(int c_no) {
+        return boardCommentMapper.selectBoardComment(c_no);
     }
 
     @Override

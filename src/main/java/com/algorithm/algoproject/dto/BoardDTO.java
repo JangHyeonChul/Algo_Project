@@ -20,6 +20,7 @@ public class BoardDTO {
     private String b_lang;
     private String b_comment_active;
     private int b_viewcnt;
+    private int b_delete;
 
     private String b_transCreate;
 

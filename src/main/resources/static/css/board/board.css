@@ -55,3 +55,66 @@ color: #0067ff;
     color: #ff0000;
 }
 
+.boardOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+
+.modify-comment {
+    position: fixed;
+    background-color: var(--font-color-gray-09);
+    border: 1px solid var(--border-color-C4);
+    left: 50%;
+    width: 45%;
+    height: 200px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.modify-content textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none;
+}
+
+.modify-content {
+    background-color: white;
+    height: 70%;
+    margin: 1rem;
+    padding: 0.5rem;
+
+}
+
+.modify-modal-exit {
+    text-align: center;
+    height: 30%;
+}
+
+.hide-modal {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.09);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 999;
+
+}
+
+.modify-modal-btn {
+    font-size: 0.8rem;
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.login-comment {
+    text-align: center;
+    font-size: 1rem;
+    margin: 2rem 0;
+}

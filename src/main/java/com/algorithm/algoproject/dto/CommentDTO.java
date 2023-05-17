@@ -10,6 +10,7 @@ import java.util.Date;
 @Data
 public class CommentDTO {
 
+    private int c_no;
     private int b_no;
     private String user_id;
     private String c_comment;
@@ -17,6 +18,7 @@ public class CommentDTO {
     private int c_recommadation;
 
     private String c_transCreate;
+    private boolean showModify;
 
     public CommentDTO() {}
 

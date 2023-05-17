@@ -3,15 +3,37 @@
 <head th:replace="/fragments/header-config"></head>
 
 <body>
+<div class="hide-modal">
+  <div class="modify-comment">
+    <div class="modify-content">
+      <textarea>안녕</textarea>
+    </div>
 
+    <div class="modify-modal-exit">
+      <a  class="modify-modal-btn" onclick="commentModify()">수정하기</a>
+      <a  class="modify-modal-btn" onclick="commentModalClose()">닫기</a>
+    </div>
+  </div>
+</div>
 <div th:replace="/fragments/nav"></div>
+<div class="mini-message"><p style="text-align: center;">정상적으로 처리되었습니다</p></div>
 
 
 <div class="breadcrumbs"></div>
 
 <div class="container">
 
+  <div class="boardOptions">
   <h1 class="notifi_title" th:text="${board.b_title}">제목</h1>
+
+    <th:block th:if="${username} == ${board.user_id}">
+      <div class="boardModify">
+        <a class="deletebtn" th:onclick="boardDeleteSubmit([[${boardNumber}]])">삭제</a>
+        <a class="deletebtn" th:href="@{/board/update/{pageNum}(pageNum = ${boardNumber})}">수정</a>
+      </div>
+    </th:block>
+
+  </div>
   <div class="board_container">
     <div class="board_notifi_title">
       <h2 th:text="${board.b_title}"></h2>
@@ -45,8 +67,13 @@
 
     </div>
     <div class="board_notifi_userInfo">
-      <p class="margin-right-1" th:text="'작성자 : ' + ${boardcomment.user_id}">작성자</p>
+      <p class="margin-right-1" th:text="'작성자 : ' + ${boardcomment.user_id}" >작성자</p>
       <p class="margin-right-1" th:text="'작성일 : ' + ${boardcomment.c_transCreate}">작성일</p>
+
+      <th:block th:if="${username} == ${boardcomment.user_id}">
+      <a class="margin-right-1 deletebtn" th:onclick="commentDeleteSubmit([[${boardcomment.c_no}]], [[${boardcomment.b_no}]])">삭제</a>
+      <a class="margin-right-1 deletebtn" th:onclick="commentModifySubmit([[${boardcomment.c_no}]])" th:text="수정">수정</a>
+      </th:block>
     </div>
   </div>
 
@@ -54,6 +81,7 @@
 
 
 <div class="container">
+  <th:block th:if="${#authorization.expression('isAuthenticated()')}">
   <div class="board_container" style="border-radius: 1rem">
     <div class="board_notifi_content">
     <textarea class="comment-textarea" placeholder="댓글 작성하기"></textarea>
@@ -62,6 +90,11 @@
   <div class="problem-submit-btn">
     <button type="button" th:onclick="|javascript:commentSubmit('${boardNumber}')|">제출하기</button>
   </div>
+  </th:block>
+
+  <th:block th:unless="${#authorization.expression('isAuthenticated()')}">
+    <p class="login-comment">로그인하지 않은 상태에서는 댓글작성이 불가능합니다</p>
+  </th:block>
 </div>
 
 

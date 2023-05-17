@@ -8,21 +8,20 @@ import com.algorithm.algoproject.service.BoardCommentService;
 import com.algorithm.algoproject.service.BoardService;
 import com.algorithm.algoproject.service.RecommdationService;
 import com.algorithm.algoproject.validator.BoardValidator;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+
 
 @Controller
 @RequestMapping("/board")
@@ -72,9 +71,17 @@ public class BoardController {
     @Transactional
     public String readBoard(@PathVariable("boardNum")int boardNumber,
                             @RequestParam(defaultValue = "1") int page, HttpServletRequest request, HttpServletResponse response, Model model ) {
+
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         alramService.updateBoardAlram(boardNumber);
         boardService.writeBoardViewCnt(boardNumber, request, response);
         BoardDTO board = boardService.getBoard(boardNumber);
+
+        if (board.getB_delete() == 1) {
+            return "redirect:/board";
+        }
+
         List<CommentDTO> boardComments = boardCommentService.getBoardComments(boardNumber);
 
         int boardTotalCount = boardService.getCountAllBoard(null);
@@ -88,14 +95,57 @@ public class BoardController {
         model.addAttribute("boards", allBoards);
         model.addAttribute("ph", pageHandler);
 
+        model.addAttribute("username", username);
         model.addAttribute("page", page);
         model.addAttribute("boardComments", boardComments);
         model.addAttribute("board", board);
         model.addAttribute("boardNumber", boardNumber);
 
-
         return "/board/board-info";
     }
+
+    @DeleteMapping("/page/{pageNum}")
+    @ResponseBody
+    @Transactional
+    public boolean deleteBoard(@PathVariable("pageNum") int pageNum) {
+
+        if (!boardValidator.boardDeleteVaildate(pageNum)) {
+            return false;
+        }
+
+        boardCommentService.deleteBoardComment(pageNum);
+        boardService.deleteBoard(pageNum);
+
+        return true;
+    }
+
+    @GetMapping("/update/{pageNum}")
+    public String modifyBoard(@PathVariable("pageNum") int pageNum, Model model) {
+
+        BoardDTO board = boardService.getBoard(pageNum);
+        if (!boardValidator.boardDeleteVaildate(pageNum) || board.getB_delete() == 1) {
+            return "redirect:/board";
+        }
+
+        model.addAttribute("board", board);
+        return "/board/board-modify";
+
+    }
+
+    @PatchMapping("/update/{pageNum}")
+    public String modifyBoard(@PathVariable("pageNum") int pageNum,
+                              @ModelAttribute("board") BoardDTO board) {
+
+        if (!boardValidator.boardDeleteVaildate(pageNum)) {
+            return "redirect:/board";
+        }
+
+        boardService.modifyBoard(pageNum, board);
+
+        return "redirect:/board";
+
+    }
+
 
 
     @PostMapping("/write")
@@ -116,6 +166,7 @@ public class BoardController {
     public List<CommentDTO> boardComment(@RequestParam("boardNumber") int boardNumber,
                                     @RequestParam("commentContent") String commentContent) {
 
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         BoardDTO board = boardService.getBoard(boardNumber);
         boardCommentService.writeBoardComment(boardNumber, commentContent);
         List<CommentDTO> boardComments = boardCommentService.getBoardComments(boardNumber);
@@ -125,7 +176,62 @@ public class BoardController {
         AlramDTO alramDTO = new AlramDTO(boardNumber, userId);
         alramService.writeBoardAlram(alramDTO);
 
+        for (CommentDTO commentDTO : boardComments) {
+            String commentUserName = commentDTO.getUser_id();
+            if (commentUserName.equals(username)) {
+                commentDTO.setShowModify(true);
+            }
+        }
+
         return boardComments;
+    }
+
+    @DeleteMapping("/comment")
+    @ResponseBody
+    @Transactional
+    public List<CommentDTO> boardCommentDelete(@RequestParam("commentNumber") int c_no,
+                                   @RequestParam("boardNumber") int b_no) {
+
+        boolean boardCommentValid = boardValidator.boardCommentVaildate(c_no);
+
+        if (!boardCommentValid) {
+            return null;
+        }
+
+        boardCommentService.deleteBoardComment(c_no);
+        return  boardCommentService.getBoardComments(b_no);
+    }
+
+    @GetMapping("/comment/update")
+    @ResponseBody
+    public CommentDTO boardCommentModify(@RequestParam("commentNumber") int c_no) {
+
+        boolean boardCommentValid = boardValidator.boardCommentVaildate(c_no);
+
+        if (!boardCommentValid) {
+            return null;
+        }
+
+        return boardCommentService.getBoardComment(c_no);
+
+    }
+
+    @PatchMapping("/comment/update")
+    @ResponseBody
+    public boolean boardCommentModify(@RequestParam("commentNumber") int c_no,
+                                         @RequestParam("commentContent") String content) {
+
+        boolean boardCommentValid = boardValidator.boardCommentVaildate(c_no);
+
+        if (!boardCommentValid) {
+            return false;
+        }
+
+
+        boardCommentService.updateBoardComment(c_no, content);
+
+        return true;
+
     }
 
     @PostMapping("/recommdation")

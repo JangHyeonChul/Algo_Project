@@ -1,6 +1,11 @@
 package com.algorithm.algoproject.validator;
 
 import com.algorithm.algoproject.dto.BoardDTO;
+import com.algorithm.algoproject.dto.CommentDTO;
+import com.algorithm.algoproject.service.BoardCommentService;
+import com.algorithm.algoproject.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
@@ -9,6 +14,11 @@ import org.springframework.validation.Validator;
 @Component
 public class BoardValidator implements Validator {
 
+    @Autowired
+    BoardService boardService;
+
+    @Autowired
+    BoardCommentService boardCommentService;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -36,5 +46,29 @@ public class BoardValidator implements Validator {
         if(boardContent.length() < 10) {
             errors.rejectValue("b_content", "length");
         }
+    }
+
+    public boolean boardDeleteVaildate(int pageNum) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        BoardDTO board = boardService.getBoard(pageNum);
+        String boardUserName = board.getUser_id();
+
+        if (!username.equals(boardUserName)) {
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public boolean boardCommentVaildate(int c_no) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        CommentDTO boardComment = boardCommentService.getBoardComment(c_no);
+
+        if (!boardComment.getUser_id().equals(username)) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -65,6 +65,17 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
+
+.deletebtn {
+    color: var(--font-color-gray-07);
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+}
+
+
+
 .mypage-input-group {
     display: flex;
     flex-direction: column;

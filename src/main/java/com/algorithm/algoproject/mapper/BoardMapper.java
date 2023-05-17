@@ -20,4 +20,8 @@ public interface BoardMapper {
     BoardDTO selectBoard(int pageNum);
 
     void updateBoardViewCnt(int pageNum);
+    void updateBoard(@Param("pageNum") int pageNum, @Param("boardDTO") BoardDTO boardDTO);
+
+    void deleteBoard(int boardNum);
+
 }

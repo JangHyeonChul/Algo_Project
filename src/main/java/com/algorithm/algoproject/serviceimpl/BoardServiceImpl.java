@@ -63,6 +63,17 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public void deleteBoard(int boardNum) {
+        boardMapper.deleteBoard(boardNum);
+    }
+
+    @Override
+    public void modifyBoard(int pageNum, BoardDTO boardDTO) {
+        boardMapper.updateBoard(pageNum, boardDTO);
+    }
+
+
+    @Override
     public int getCountAllBoard(String category) {
 
         return boardMapper.countAllBoard(category);

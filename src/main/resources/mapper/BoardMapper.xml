@@ -19,7 +19,7 @@
     <select id="selectAllBoards" resultType="BoardDTO" >
         SELECT *
         FROM board
-        WHERE b_category = COALESCE(#{category}, b_category)
+        WHERE b_category = COALESCE(#{category}, b_category) AND b_delete = 0
         ORDER BY b_no DESC
         LIMIT #{offset}, 20
     </select>
@@ -39,7 +39,7 @@
     <select id="selectAllBoardsByUser" parameterType="String" resultType="BoardDTO">
         SELECT *
         FROM board
-        WHERE user_id = #{username}
+        WHERE user_id = #{username} AND b_delete = 0
     </select>
 
     <select id="selectAllBoardsBySearch" resultType="BoardDTO">
@@ -49,9 +49,26 @@
            OR b_content LIKE concat('%', #{keyword}, '%')
            OR b_title LIKE concat('%', #{keyword}, '%')
             OR user_id LIKE concat('%' #{keyword}, '%')
+            AND b_delete = 0
         ORDER BY b_no ASC
             LIMIT #{offset}, 20
     </select>
+
+    <update id="deleteBoard" parameterType="int">
+        UPDATE board
+        SET b_delete = 1
+        WHERE b_no = #{pageNum}
+    </update>
+
+    <update id="updateBoard">
+        UPDATE board
+        SET b_title = #{boardDTO.b_title},
+            b_category = #{boardDTO.b_category},
+            b_content = #{boardDTO.b_content},
+            b_lang = #{boardDTO.b_lang},
+            b_comment_active = #{boardDTO.b_comment_active}
+        WHERE b_no = #{pageNum}
+    </update>
 
 
 

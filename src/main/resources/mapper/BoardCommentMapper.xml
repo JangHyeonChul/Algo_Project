@@ -22,7 +22,7 @@
         WHERE b_no = #{b_no}
     </select>
 
-    <update id="updateBoardComment" parameterType="int">
+    <update id="updateBoardCommentCnt" parameterType="int">
         UPDATE board
         SET b_comment_cnt = (
             SELECT count(*)
@@ -30,6 +30,24 @@
             WHERE boardcomment.b_no = board.b_no
         )
         WHERE b_no = #{boardNum};
+    </update>
+
+    <delete id="deleteBoardComment" parameterType="int">
+        DELETE FROM boardcomment
+        WHERE c_no = #{pageNum}
+    </delete>
+
+    <select id="selectBoardComment" resultType="CommentDTO" parameterType="int">
+        SELECT *
+        FROM boardcomment
+        WHERE c_no = #{c_no}
+
+    </select>
+
+    <update id="updateBoardComment">
+        UPDATE boardcomment
+        SET c_comment = #{content}
+        WHERE c_no = #{c_no}
     </update>
 
 
