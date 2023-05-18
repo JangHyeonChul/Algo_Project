@@ -390,8 +390,12 @@ function transCategory(category) {
             return '[질문]';
         case 'TE':
             return '[강의]';
+        case 'ROLE_UNAUTH':
+            return '미인증유저';
         case 'ROLE_USER':
             return '일반유저';
+        case 'ROLE_ADMIN':
+            return '관리자';
     }
 }
 

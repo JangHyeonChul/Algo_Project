@@ -1,9 +1,7 @@
 package com.algorithm.algoproject.controller;
 
 import com.algorithm.algoproject.dto.RankDTO;
-import com.algorithm.algoproject.service.ProblemService;
 import com.algorithm.algoproject.service.RankService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +12,11 @@ import java.util.List;
 @Controller
 public class RankingController {
 
-    @Autowired
     RankService rankService;
+
+    public RankingController(RankService rankService) {
+        this.rankService = rankService;
+    }
 
     @GetMapping("/rank")
     public String rank(Model model) {

@@ -2,11 +2,8 @@ package com.algorithm.algoproject.controller;
 
 
 import com.algorithm.algoproject.PageHandler;
-import com.algorithm.algoproject.dto.BoardDTO;
-import com.algorithm.algoproject.dto.CommentDTO;
 import com.algorithm.algoproject.dto.NotificationDTO;
 import com.algorithm.algoproject.service.NotificationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +15,18 @@ import java.util.List;
 @Controller
 public class NotificationController {
 
-    @Autowired
     NotificationService notificationService;
+
+    public NotificationController(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 
     @GetMapping("/notification/{pageNum}")
     public String notification(@PathVariable(required = false) int pageNum,
                                @RequestParam(defaultValue = "1") int page, Model model) {
 
         if (pageNum == 0) {
-            int lastNum = notificationService.getNotificationCounts();
-            pageNum = lastNum;
+            pageNum = notificationService.getNotificationCounts();
         }
 
         NotificationDTO notificationBoardByPageNum = notificationService.getNotificationBoardByPageNum(pageNum);

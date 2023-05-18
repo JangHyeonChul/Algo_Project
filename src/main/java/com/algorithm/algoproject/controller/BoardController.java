@@ -10,10 +10,7 @@ import com.algorithm.algoproject.service.RecommdationService;
 import com.algorithm.algoproject.validator.BoardValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.ibatis.jdbc.Null;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -27,22 +24,24 @@ import java.util.List;
 @RequestMapping("/board")
 public class BoardController {
 
-    @Autowired
+
     BoardValidator boardValidator;
-
-    @Autowired
     BoardService boardService;
-
-    @Autowired
     BoardCommentService boardCommentService;
-
-    @Autowired
     RecommdationService recommdationService;
-
-    @Autowired
     AlramService alramService;
 
-
+    public BoardController(BoardValidator boardValidator,
+                           BoardService boardService,
+                           BoardCommentService boardCommentService,
+                           RecommdationService recommdationService,
+                           AlramService alramService) {
+        this.boardValidator = boardValidator;
+        this.boardService = boardService;
+        this.boardCommentService = boardCommentService;
+        this.recommdationService = recommdationService;
+        this.alramService = alramService;
+    }
 
     @GetMapping("")
     public String board(@RequestParam(defaultValue = "1") Integer page, Model model) {
@@ -239,8 +238,7 @@ public class BoardController {
     @Transactional
     public RecommdationDTO boardRecommdation(@RequestParam("boardNumber") int boardNumber) {
 
-        RecommdationDTO recommdationDTO = recommdationService.writeBoardRecommdation(boardNumber);
-        return recommdationDTO;
+        return recommdationService.writeBoardRecommdation(boardNumber);
 
     }
 

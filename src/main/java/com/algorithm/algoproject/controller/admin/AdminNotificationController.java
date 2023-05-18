@@ -3,7 +3,6 @@ package com.algorithm.algoproject.controller.admin;
 
 import com.algorithm.algoproject.dto.NotificationDTO;
 import com.algorithm.algoproject.service.NotificationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminNotificationController {
 
-    @Autowired
     NotificationService notificationService;
 
+    public AdminNotificationController(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 
     @GetMapping("/notification")
     public String notification(@ModelAttribute("notificationDTO") NotificationDTO notificationDTO) {

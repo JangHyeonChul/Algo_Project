@@ -4,7 +4,6 @@ import com.algorithm.algoproject.dto.BoardDTO;
 import com.algorithm.algoproject.dto.CommentDTO;
 import com.algorithm.algoproject.service.BoardCommentService;
 import com.algorithm.algoproject.service.BoardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -14,11 +13,13 @@ import org.springframework.validation.Validator;
 @Component
 public class BoardValidator implements Validator {
 
-    @Autowired
     BoardService boardService;
-
-    @Autowired
     BoardCommentService boardCommentService;
+
+    public BoardValidator(BoardService boardService, BoardCommentService boardCommentService) {
+        this.boardService = boardService;
+        this.boardCommentService = boardCommentService;
+    }
 
     @Override
     public boolean supports(Class<?> clazz) {

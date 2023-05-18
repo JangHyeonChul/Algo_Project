@@ -3,16 +3,16 @@ package com.algorithm.algoproject.serviceimpl;
 import com.algorithm.algoproject.dto.RecommdationDTO;
 import com.algorithm.algoproject.mapper.RecommdationMapper;
 import com.algorithm.algoproject.service.RecommdationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 @Service
 public class RecommdationServiceImpl implements RecommdationService {
 
-    @Autowired
     RecommdationMapper recommdationMapper;
+
+    public RecommdationServiceImpl(RecommdationMapper recommdationMapper) {
+        this.recommdationMapper = recommdationMapper;
+    }
 
     @Override
     public RecommdationDTO writeBoardRecommdation(int b_no) {

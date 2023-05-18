@@ -5,35 +5,28 @@ import com.algorithm.algoproject.dto.*;
 import com.algorithm.algoproject.service.CompileService;
 import com.algorithm.algoproject.service.HistoryService;
 import com.algorithm.algoproject.service.ProblemService;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
 
 
 @Controller
-@Slf4j
+
 public class ProblemController {
 
-    @Autowired
     ProblemService problemService;
-
-    @Autowired
     CompileService compileService;
-
-    @Autowired
     HistoryService historyService;
 
-
+    public ProblemController(ProblemService problemService, CompileService compileService, HistoryService historyService) {
+        this.problemService = problemService;
+        this.compileService = compileService;
+        this.historyService = historyService;
+    }
 
     @GetMapping("/problem")
     public String problem(@RequestParam(defaultValue = "1") Integer page,
@@ -115,8 +108,8 @@ public class ProblemController {
 
 
     @PostMapping("/challenge/{pageNum}")
-        public String challenge(String code, @RequestParam("language")String lang, @PathVariable Integer pageNum, RedirectAttributes redirectAttributes) {
-        String compileResult = compileService.compileHandler(code, lang, pageNum);
+        public String challenge(String code, @RequestParam("language")String lang, @PathVariable Integer pageNum) {
+        compileService.compileHandler(code, lang, pageNum);
 
         return "redirect:/problem";
     }

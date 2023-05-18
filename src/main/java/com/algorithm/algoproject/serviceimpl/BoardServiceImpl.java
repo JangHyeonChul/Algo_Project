@@ -9,19 +9,20 @@ import com.algorithm.algoproject.service.BoardService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
-    @Autowired
     BoardMapper boardMapper;
+
+    public BoardServiceImpl(BoardMapper boardMapper) {
+        this.boardMapper = boardMapper;
+    }
 
     @Override
     public void writeBoard(BoardDTO boardDTO) {

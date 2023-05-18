@@ -3,7 +3,6 @@ package com.algorithm.algoproject.validator;
 import com.algorithm.algoproject.config.RegisterConstains;
 import com.algorithm.algoproject.dto.MemberDTO;
 import com.algorithm.algoproject.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
@@ -13,8 +12,11 @@ import org.springframework.validation.Validator;
 @Component
 public class RegisterValidaor implements Validator {
 
-    @Autowired
     UserService userService;
+
+    public RegisterValidaor(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean supports(Class<?> clazz) {

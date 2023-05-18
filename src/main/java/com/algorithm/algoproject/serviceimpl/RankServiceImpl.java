@@ -3,7 +3,6 @@ package com.algorithm.algoproject.serviceimpl;
 import com.algorithm.algoproject.dto.RankDTO;
 import com.algorithm.algoproject.mapper.RankMapper;
 import com.algorithm.algoproject.service.RankService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,8 +11,11 @@ import java.util.List;
 @Service
 public class RankServiceImpl implements RankService {
 
-    @Autowired
     RankMapper rankMapper;
+
+    public RankServiceImpl(RankMapper rankMapper) {
+        this.rankMapper = rankMapper;
+    }
 
     @Override
     public List<RankDTO> getRankInfo() {

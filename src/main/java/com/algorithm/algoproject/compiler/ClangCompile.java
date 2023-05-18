@@ -4,15 +4,9 @@ package com.algorithm.algoproject.compiler;
 import com.algorithm.algoproject.config.CompileConstains;
 import com.algorithm.algoproject.dto.AnswerDTO;
 import com.algorithm.algoproject.service.ProblemService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.tools.JavaCompiler;
-import javax.tools.ToolProvider;
 import java.io.*;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,9 +14,11 @@ import java.util.Scanner;
 @Component
 public class ClangCompile {
 
-    @Autowired
     ProblemService problemService;
 
+    public ClangCompile(ProblemService problemService) {
+        this.problemService = problemService;
+    }
 
     public List<String> compileClangCode(String code, Integer pageNum) {
         List<AnswerDTO> problemAnswers = problemService.getProblemAnswers(pageNum);

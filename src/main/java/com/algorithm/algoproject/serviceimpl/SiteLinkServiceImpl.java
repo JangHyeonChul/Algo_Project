@@ -12,8 +12,11 @@ import java.util.List;
 @Service
 public class SiteLinkServiceImpl implements SiteLinkService {
 
-    @Autowired
     SiteLinkMapper siteLinkMapper;
+
+    public SiteLinkServiceImpl(SiteLinkMapper siteLinkMapper) {
+        this.siteLinkMapper = siteLinkMapper;
+    }
 
     @Override
     public void writeSiteLink(SiteDTO siteDTO) {

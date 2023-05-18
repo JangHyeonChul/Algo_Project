@@ -7,7 +7,6 @@ import com.algorithm.algoproject.dto.MyInfoDTO;
 import com.algorithm.algoproject.mapper.ProblemMapper;
 import com.algorithm.algoproject.mapper.UserMapper;
 import com.algorithm.algoproject.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +16,15 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
     UserMapper userMapper;
-
-    @Autowired
     ProblemMapper problemMapper;
+
+    public UserServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder, UserMapper userMapper, ProblemMapper problemMapper) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userMapper = userMapper;
+        this.problemMapper = problemMapper;
+    }
 
     @Override
     public MemberDTO findByUserIdOrEmail(String userData) {

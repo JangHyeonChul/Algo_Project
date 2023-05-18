@@ -4,19 +4,20 @@ import com.algorithm.algoproject.Time;
 import com.algorithm.algoproject.dto.CommentDTO;
 import com.algorithm.algoproject.mapper.BoardCommentMapper;
 import com.algorithm.algoproject.service.BoardCommentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class BoardCommentServiceImpl implements BoardCommentService {
 
-    @Autowired
     BoardCommentMapper boardCommentMapper;
+
+    public BoardCommentServiceImpl(BoardCommentMapper boardCommentMapper) {
+        this.boardCommentMapper = boardCommentMapper;
+    }
 
     @Override
     public void writeBoardComment(int boardNumber, String commentContent) {

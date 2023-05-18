@@ -5,8 +5,6 @@ import com.algorithm.algoproject.config.AuthorityConstains;
 import com.algorithm.algoproject.dto.TokenLinkDTO;
 import com.algorithm.algoproject.service.TokenLinkService;
 import com.algorithm.algoproject.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +15,13 @@ import java.time.LocalDateTime;
 @Controller
 public class TokenLinkController {
 
-    @Autowired
     TokenLinkService tokenLinkService;
-
-    @Autowired
     UserService userService;
+
+    public TokenLinkController(TokenLinkService tokenLinkService, UserService userService) {
+        this.tokenLinkService = tokenLinkService;
+        this.userService = userService;
+    }
 
     @GetMapping("/linkauthentication")
     public String linkAuthentication(@RequestParam("token") String token,

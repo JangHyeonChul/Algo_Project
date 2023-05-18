@@ -6,7 +6,6 @@ import com.algorithm.algoproject.Time;
 import com.algorithm.algoproject.dto.NotificationDTO;
 import com.algorithm.algoproject.mapper.NotificationMapper;
 import com.algorithm.algoproject.service.NotificationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,8 +14,11 @@ import java.util.List;
 @Service
 public class NotificationServiceImpl implements NotificationService {
 
-    @Autowired
     NotificationMapper notificationMapper;
+
+    public NotificationServiceImpl(NotificationMapper notificationMapper) {
+        this.notificationMapper = notificationMapper;
+    }
 
     @Override
     public void writeNotification(NotificationDTO notificationDTO) {

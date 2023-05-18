@@ -3,22 +3,17 @@ package com.algorithm.algoproject.controller;
 
 import com.algorithm.algoproject.dto.*;
 import com.algorithm.algoproject.dto.join.AlramBoardDTO;
-import com.algorithm.algoproject.security.MemberDetails;
 import com.algorithm.algoproject.service.AlramService;
 import com.algorithm.algoproject.service.BoardService;
 import com.algorithm.algoproject.service.TokenLinkService;
 import com.algorithm.algoproject.service.UserService;
 import com.algorithm.algoproject.validator.MypagePasswordValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -26,21 +21,23 @@ import java.util.Map;
 @RequestMapping("/mypage")
 public class MypageController {
 
-    @Autowired
     UserService userService;
-
-    @Autowired
     MypagePasswordValidator mypagePasswordValidator;
-
-    @Autowired
     TokenLinkService tokenLinkService;
-
-    @Autowired
     BoardService boardService;
-
-    @Autowired
     AlramService alramService;
 
+    public MypageController(UserService userService,
+                            MypagePasswordValidator mypagePasswordValidator,
+                            TokenLinkService tokenLinkService,
+                            BoardService boardService,
+                            AlramService alramService) {
+        this.userService = userService;
+        this.mypagePasswordValidator = mypagePasswordValidator;
+        this.tokenLinkService = tokenLinkService;
+        this.boardService = boardService;
+        this.alramService = alramService;
+    }
 
     @GetMapping("")
     public String mypage(Model model) {
@@ -59,18 +56,15 @@ public class MypageController {
 
         String user = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        String userInfoValid = userService.userModifyInfoValidCheck(username, user, message);
-
-        return userInfoValid;
+        return userService.userModifyInfoValidCheck(username, user, message);
     }
 
     @GetMapping("/modifyinfo")
     @ResponseBody
     public MemberDTO modifyInfoBtn() {
         String user = SecurityContextHolder.getContext().getAuthentication().getName();
-        MemberDTO userdata = userService.findByUserIdOrEmail(user);
 
-        return userdata;
+        return userService.findByUserIdOrEmail(user);
     }
 
     @PostMapping("/password")
@@ -88,11 +82,9 @@ public class MypageController {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         tokenLinkService.tokenLinkHandler(username);
-        Map<String, String> tokenData = tokenLinkService.getTokenData(username);
 
 
-
-        return tokenData;
+        return tokenLinkService.getTokenData(username);
 
 
     }
@@ -102,10 +94,9 @@ public class MypageController {
     public Map<String, String> emailSubmitBtn() {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Map<String, String> tokenData = tokenLinkService.getTokenData(username);
 
 
-        return tokenData;
+        return tokenLinkService.getTokenData(username);
 
     }
 
@@ -114,10 +105,9 @@ public class MypageController {
     public List<BoardDTO> boardSubmitBtn() {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        List<BoardDTO> allBoardsByUser = boardService.getAllBoardsByUser(username);
 
 
-        return allBoardsByUser;
+        return boardService.getAllBoardsByUser(username);
     }
 
     @GetMapping("/alram")
@@ -140,9 +130,8 @@ public class MypageController {
     public MyInfoDTO userInfoSubmitBtn() {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        MyInfoDTO userInfo = userService.getUserInfo(username);
 
-        return userInfo;
+        return userService.getUserInfo(username);
 
     }
 

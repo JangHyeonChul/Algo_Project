@@ -15,14 +15,15 @@ import java.util.Map;
 @Component
 public class MypagePasswordValidator {
 
-    @Autowired
     UserService userService;
-
-    @Autowired
     PasswordEncoder passwordEncoder;
-
-    @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public MypagePasswordValidator(UserService userService, PasswordEncoder passwordEncoder, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public Map<String, String> myPagePasswordVaild(String originalPwd, String newPassword, String newPasswordCheck) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

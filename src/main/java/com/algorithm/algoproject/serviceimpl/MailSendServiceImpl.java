@@ -3,11 +3,9 @@ package com.algorithm.algoproject.serviceimpl;
 import com.algorithm.algoproject.dto.MemberDTO;
 import com.algorithm.algoproject.dto.TokenLinkDTO;
 import com.algorithm.algoproject.mapper.TokenLinkMapper;
+import com.algorithm.algoproject.mapper.UserMapper;
 import com.algorithm.algoproject.service.MailSendService;
-import com.algorithm.algoproject.service.TokenLinkService;
-import com.algorithm.algoproject.service.UserService;
 import jakarta.mail.internet.MimeMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,19 +15,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailSendServiceImpl implements MailSendService {
 
-    @Autowired
     JavaMailSender javaMailSender;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
+    UserMapper userMapper;
     TokenLinkMapper tokenLinkMapper;
+
+    public MailSendServiceImpl(JavaMailSender javaMailSender, UserMapper userMapper, TokenLinkMapper tokenLinkMapper) {
+        this.javaMailSender = javaMailSender;
+        this.userMapper = userMapper;
+        this.tokenLinkMapper = tokenLinkMapper;
+    }
 
     @Override
     public void sendMailHandler() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        MemberDTO userdata = userService.findByUserIdOrEmail(username);
+        MemberDTO userdata = userMapper.findByUserData(username);
         TokenLinkDTO tokenLinkUser = tokenLinkMapper.selectTokenLink(username);
 
         String subject = "메일";

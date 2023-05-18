@@ -4,8 +4,6 @@ import com.algorithm.algoproject.PageHandler;
 import com.algorithm.algoproject.dto.*;
 import com.algorithm.algoproject.mapper.ProblemMapper;
 import com.algorithm.algoproject.service.ProblemService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -16,8 +14,11 @@ import java.util.Map;
 @Service
 public class ProblemServiceImpl implements ProblemService {
 
-    @Autowired
     ProblemMapper problemMapper;
+
+    public ProblemServiceImpl(ProblemMapper problemMapper) {
+        this.problemMapper = problemMapper;
+    }
 
     private String ProblemsHandler(String typename) {
         if (typename.equals("ac"))

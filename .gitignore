@@ -2,6 +2,7 @@ HELP.md
 .gradle
 build/
 
+**/src/main/resources/application.properties
 !**/src/test/java/com/algorithm/algoproject
 
 !gradle/wrapper/gradle-wrapper.jar

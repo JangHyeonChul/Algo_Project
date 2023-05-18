@@ -2,10 +2,8 @@ package com.algorithm.algoproject.controller.admin;
 
 
 import com.algorithm.algoproject.dto.AnswerDTO;
-import com.algorithm.algoproject.dto.MemberDTO;
 import com.algorithm.algoproject.dto.ProblemDTO;
 import com.algorithm.algoproject.service.ProblemService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +17,11 @@ import java.util.ArrayList;
 @RequestMapping("/admin")
 public class AdminProblemController {
 
-
-    @Autowired
     ProblemService problemService;
+
+    public AdminProblemController(ProblemService problemService) {
+        this.problemService = problemService;
+    }
 
     @GetMapping("/problem")
     public String admin(Model model) {

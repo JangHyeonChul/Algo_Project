@@ -3,6 +3,7 @@ package com.algorithm.algoproject.serviceimpl;
 import com.algorithm.algoproject.dto.MemberDTO;
 import com.algorithm.algoproject.dto.TokenLinkDTO;
 import com.algorithm.algoproject.mapper.TokenLinkMapper;
+import com.algorithm.algoproject.mapper.UserMapper;
 import com.algorithm.algoproject.service.MailSendService;
 import com.algorithm.algoproject.service.TokenLinkService;
 import com.algorithm.algoproject.service.UserService;
@@ -11,8 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -22,14 +21,15 @@ import java.util.UUID;
 @Service
 public class TokenLinkServiceImpl implements TokenLinkService {
 
-    @Autowired
     TokenLinkMapper tokenLinkMapper;
-
-    @Autowired
     MailSendService mailSendService;
+    UserMapper userMapper;
 
-    @Autowired
-    UserService userService;
+    public TokenLinkServiceImpl(TokenLinkMapper tokenLinkMapper, MailSendService mailSendService, UserMapper userMapper) {
+        this.tokenLinkMapper = tokenLinkMapper;
+        this.mailSendService = mailSendService;
+        this.userMapper = userMapper;
+    }
 
     private static final int MINUTES = 1;
     private static final int RESET_TIME = 24;
@@ -44,8 +44,6 @@ public class TokenLinkServiceImpl implements TokenLinkService {
     public void tokenLinkHandler(String username) {
         TokenLinkDTO tokenLinkDTO = tokenLinkMapper.selectTokenLink(username);
 
-        System.out.println("실행");
-        System.out.println("tokenLinkDTO = " + tokenLinkDTO);
         if (Objects.isNull(tokenLinkDTO)) {
             createTokenLink(username);
         }
@@ -68,7 +66,7 @@ public class TokenLinkServiceImpl implements TokenLinkService {
     @Override
     public Map<String, String> getTokenData(String username) {
         TokenLinkDTO tokenLink = tokenLinkMapper.selectTokenLink(username);
-        MemberDTO userdata = userService.findByUserIdOrEmail(username);
+        MemberDTO userdata = userMapper.findByUserData(username);
 
         Map<String, String> emailDataMap = new HashMap<>();
 
@@ -98,7 +96,6 @@ public class TokenLinkServiceImpl implements TokenLinkService {
 
     private void updateTokenLink(String username) {
         TokenLinkDTO tokenLinkDTO = tokenLinkMapper.selectTokenLink(username);
-        System.out.println("실행");
         int tokenTrial = tokenLinkDTO.getT_trial();
 
         if (tokenTrial < TOKEN_TRIAL) {

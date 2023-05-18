@@ -4,13 +4,10 @@ import com.algorithm.algoproject.compiler.ClangCompile;
 import com.algorithm.algoproject.compiler.JavaCompile;
 import com.algorithm.algoproject.compiler.PythonCompile;
 import com.algorithm.algoproject.config.CompileConstains;
-import com.algorithm.algoproject.dto.ProblemDTO;
+import com.algorithm.algoproject.mapper.ProblemMapper;
 import com.algorithm.algoproject.service.CompileService;
 import com.algorithm.algoproject.service.HistoryService;
 import com.algorithm.algoproject.service.PointService;
-import com.algorithm.algoproject.service.ProblemService;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
@@ -19,31 +16,30 @@ import java.util.*;
 @Service
 public class CompileServiceImpl implements CompileService {
 
-    @Autowired
-    ProblemService problemService;
-
-    @Autowired
+    ProblemMapper problemMapper;
     HistoryService historyService;
-
-    @Autowired
     PointService pointService;
-
-    @Autowired
     JavaCompile javaCompile;
-
-    @Autowired
     ClangCompile clangCompile;
-
-    @Autowired
     PythonCompile pythonCompile;
 
-
-
+    public CompileServiceImpl(ProblemMapper problemMapper,
+                              HistoryService historyService,
+                              PointService pointService,
+                              JavaCompile javaCompile,
+                              ClangCompile clangCompile,
+                              PythonCompile pythonCompile) {
+        this.problemMapper = problemMapper;
+        this.historyService = historyService;
+        this.pointService = pointService;
+        this.javaCompile = javaCompile;
+        this.clangCompile = clangCompile;
+        this.pythonCompile = pythonCompile;
+    }
 
     @Override
     @Transactional
     public String compileHandler(String code, String lang, Integer pageNum) {
-        ProblemDTO problem = problemService.getProblem(pageNum);
         List<String> compileResults = new ArrayList<>();
 
         if (lang.equals("JAVA")) {
