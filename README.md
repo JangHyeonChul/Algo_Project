@@ -1,5 +1,6 @@
 # 📕알고리즘 온라인 저지
 
+<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
 
 ![1](https://github.com/JangHyeonChul/Algo_Project/assets/74286316/08af86c9-0d19-488e-badf-180ff26aa693)<br/>
 
@@ -26,7 +27,6 @@
 
 🔍 사용 툴 IntellJ, AWS
 
-**사이트 : http://ez2level.kro.kr/**
 <br/>
 <br/>
 <br/>
